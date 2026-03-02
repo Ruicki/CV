@@ -1,16 +1,17 @@
 import { FadeIn, SlideUp } from "@/components/ui/motion";
-import { personalInfo, education } from "@/data/resume";
+import { personalInfo, education } from "@/data/cv-data";
 import { GraduationCap } from "lucide-react";
 import Image from "next/image";
+import { SectionTitle } from "@/components/ui/SectionTitle";
 
 export default function About() {
     return (
         <section id="about" className="py-24 bg-muted/50">
             <div className="container px-4 md:px-6">
                 <FadeIn>
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-8">
+                    <SectionTitle className="mb-8">
                         ¿Quien Soy?
-                    </h2>
+                    </SectionTitle>
                 </FadeIn>
                 <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-start">
                     <SlideUp delay={0.2} className="space-y-4 text-muted-foreground">

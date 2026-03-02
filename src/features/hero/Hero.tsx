@@ -2,7 +2,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 import { SlideUp, FadeIn } from "@/components/ui/motion";
-import { personalInfo } from "@/data/resume";
+import { personalInfo } from "@/data/cv-data";
 
 export default function Hero() {
     return (

@@ -28,3 +28,20 @@ export interface SocialLink {
     url: string;
     icon: string; // Lucide icon name or component
 }
+
+export interface PersonalInfo {
+    name: string;
+    title: string;
+    email: string;
+    phone: string;
+    location: string;
+    about: string;
+    avatar: string;
+}
+
+export interface Education {
+    institution: string;
+    degree: string;
+    startDate: string;
+    endDate: string;
+}

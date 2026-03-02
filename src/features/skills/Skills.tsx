@@ -3,8 +3,10 @@
 import { Code2, Database, BrainCircuit, Languages } from "lucide-react";
 
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { skills } from "@/data/resume";
+import { skills } from "@/data/cv-data";
 import { Icons } from "@/components/ui/icons";
+import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Badge } from "@/components/ui/Badge";
 
 // Helper to map string icon names to components
 const getIcon = (iconName?: string) => {
@@ -35,9 +37,9 @@ export default function Skills() {
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
                     <FadeIn>
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                        <SectionTitle>
                             Habilidades Técnicas
-                        </h2>
+                        </SectionTitle>
                     </FadeIn>
                     <SlideUp delay={0.2}>
                         <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
@@ -51,10 +53,10 @@ export default function Skills() {
                         const Icon = getIcon(skill.icon);
                         return (
                             <StaggerItem key={index}>
-                                <div className="px-5 py-3 rounded-full bg-secondary/50 border border-secondary text-secondary-foreground font-medium transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center gap-2">
+                                <Badge className="px-5 py-3 bg-secondary/50 border border-secondary transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary flex items-center gap-2 text-sm sm:text-base">
                                     <Icon className="h-4 w-4" />
                                     {skill.name}
-                                </div>
+                                </Badge>
                             </StaggerItem>
                         )
                     })}

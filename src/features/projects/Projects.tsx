@@ -2,7 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { projects } from "@/data/resume";
+import { projects } from "@/data/cv-data";
+import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Badge } from "@/components/ui/Badge";
 
 export default function Projects() {
     return (
@@ -10,9 +12,9 @@ export default function Projects() {
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
                     <FadeIn>
-                        <h2 className="text-3xl  font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                        <SectionTitle>
                             Proyectos Destacados
-                        </h2>
+                        </SectionTitle>
                     </FadeIn>
                     <SlideUp delay={0.2}>
                         <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
@@ -21,7 +23,7 @@ export default function Projects() {
                     </SlideUp>
                 </div>
 
-                <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 flex flex-col items-center justify-center items-center justify-center">
+                <StaggerContainer className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 justify-center">
                     {projects.map((project, index) => (
                         <StaggerItem key={index} className="group relative overflow-hidden rounded-xl border bg-background text-card-foreground shadow transition-all hover:shadow-lg flex flex-col">
                             <div className="aspect-video w-full bg-muted flex items-center justify-center text-muted-foreground relative overflow-hidden">
@@ -39,7 +41,7 @@ export default function Projects() {
                                     <h3 className="text-2xl font-semibold leading-none tracking-tight mb-2">{project.title}</h3>
                                     <div className="flex flex-wrap gap-2 mb-2">
                                         {project.tags.map(tag => (
-                                            <span key={tag} className="px-2 py-1 text-xs rounded-full bg-secondary text-secondary-foreground">{tag}</span>
+                                            <Badge key={tag}>{tag}</Badge>
                                         ))}
                                     </div>
                                     <p className="text-sm text-muted-foreground line-clamp-3">

@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { experience } from "@/data/resume";
+import { experience } from "@/data/cv-data";
+import { SectionTitle } from "@/components/ui/SectionTitle";
+import { Badge } from "@/components/ui/Badge";
 
 export default function Experience() {
     return (
@@ -8,9 +10,9 @@ export default function Experience() {
             <div className="container px-4 md:px-6">
                 <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
                     <FadeIn>
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                        <SectionTitle>
                             Experiencia Laboral
-                        </h2>
+                        </SectionTitle>
                     </FadeIn>
                     <FadeIn delay={0.2}>
                         <p className="max-w-[700px] text-muted-foreground md:text-xl">
@@ -53,9 +55,9 @@ export default function Experience() {
                                         {job.technologies && (
                                             <div className="flex flex-wrap gap-2">
                                                 {job.technologies.map((tech) => (
-                                                    <span key={tech} className="text-xs px-2 py-1 bg-secondary rounded-md text-secondary-foreground font-mono">
+                                                    <Badge key={tech} className="font-mono">
                                                         {tech}
-                                                    </span>
+                                                    </Badge>
                                                 ))}
                                             </div>
                                         )}

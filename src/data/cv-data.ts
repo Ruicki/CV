@@ -1,7 +1,6 @@
-import { Project, Experience, Skill, SocialLink } from "@/types";
-import { Github, Linkedin, Mail, Twitter, MapPin, Phone } from "lucide-react";
+import { Project, Experience, Skill, SocialLink, PersonalInfo, Education } from "@/types";
 
-export const personalInfo = {
+export const personalInfo: PersonalInfo = {
     name: "Ricardo Pinzón",
     title: "Desarrollador de Software",
     email: "rickipinzon@gmail.com",
@@ -50,7 +49,7 @@ export const experience: Experience[] = [
     },
 ];
 
-export const education = [
+export const education: Education[] = [
     {
         institution: "Universidad Tecnológica de Panamá",
         degree: "Licenciatura en Desarrollo de Software",

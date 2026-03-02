@@ -3,8 +3,9 @@
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Mail, Github, Linkedin, MessageSquare } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/motion";
-import { personalInfo, socialLinks } from "@/data/resume";
+import { personalInfo, socialLinks } from "@/data/cv-data";
 import { Icons } from "@/components/ui/icons";
+import { SectionTitle } from "@/components/ui/SectionTitle";
 
 export default function Contact() {
     return (
@@ -12,9 +13,9 @@ export default function Contact() {
             <div className="container px-4 md:px-6">
                 <div className="mx-auto max-w-2xl space-y-8 text-center">
                     <FadeIn>
-                        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                        <SectionTitle>
                             ¿Quieres contactarme?
-                        </h2>
+                        </SectionTitle>
                     </FadeIn>
                     <SlideUp delay={0.2}>
                         <p className="text-muted-foreground md:text-xl">
