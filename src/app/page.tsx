@@ -1,9 +1,10 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/features/hero/Hero";
 import About from "@/features/about/About";
+import Projects from "@/features/projects/Projects";
 import Skills from "@/features/skills/Skills";
 import Experience from "@/features/experience/Experience";
-import Projects from "@/features/projects/Projects";
+import EducationSection from "@/features/education/Education";
 import Contact from "@/features/contact/Contact";
 
 export default function Home() {
@@ -12,9 +13,10 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
+      <Projects />
       <Skills />
       <Experience />
-      <Projects />
+      <EducationSection />
       <Contact />
 
       <footer className="py-6 items-center text-center border-t border-border bg-background">

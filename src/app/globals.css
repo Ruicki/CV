@@ -5,82 +5,67 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Base - Slate 50 */
-  --background: 210 40% 98%;
-  /* Slate 900 */
-  --foreground: 222 47% 11%;
+  /* Navy + Gold - Light Mode */
+  --background: 40 30% 97%;
+  --foreground: 210 65% 11%;
 
-  /* White */
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
+  --card-foreground: 210 65% 11%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 222 47% 11%;
+  --popover-foreground: 210 65% 11%;
 
-  /* Primary - Deep Navy (Slate 900) */
-  --primary: 222 47% 11%;
-  --primary-foreground: 210 40% 98%;
+  --primary: 210 65% 11%;
+  --primary-foreground: 0 0% 100%;
 
-  /* Secondary - Slate 100 */
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222 47% 11%;
+  --secondary: 40 25% 92%;
+  --secondary-foreground: 210 65% 11%;
 
-  /* Accent - Blue 600 for subtle highlights */
-  --accent: 221.2 83.2% 53.3%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 44 54% 54%;
+  --accent-foreground: 210 65% 11%;
 
-  /* Muted - Slate 100 */
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 40 20% 92%;
+  --muted-foreground: 40 10% 46%;
 
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
+  --border: 40 20% 86%;
+  --input: 40 20% 86%;
+  --ring: 44 54% 54%;
 
   --radius: 0.75rem;
 }
 
 .dark {
-  /* Base Dark - Slate 950 (More deep blue/grey than pure black) */
-  --background: 222 47% 11%;
-  /* Slate 50 */
-  --foreground: 210 40% 98%;
+  /* Navy + Gold - Dark Mode */
+  --background: 210 65% 4%;
+  --foreground: 40 20% 92%;
 
-  /* Card Dark - Slate 900 */
-  --card: 222 47% 11%;
-  /* Slightly lighter for elevation if needed, but keeping flat for now or using border */
-  --card: 217 33% 17%;
-  /* Reverting to Slate 800 for contrast cards */
+  --card: 210 50% 7%;
+  --card-foreground: 40 20% 92%;
 
-  --card-foreground: 210 40% 98%;
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 210 50% 5%;
+  --popover-foreground: 40 20% 92%;
 
-  /* Primary Dark - White/Slate 50 */
-  --primary: 210 40% 98%;
-  --primary-foreground: 222 47% 11%;
+  --primary: 40 20% 92%;
+  --primary-foreground: 210 65% 11%;
 
-  /* Secondary Dark - Slate 800 */
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 210 30% 14%;
+  --secondary-foreground: 40 20% 92%;
 
-  /* Accent Dark - Blue 500 */
-  --accent: 217 91% 60%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 44 54% 54%;
+  --accent-foreground: 210 65% 11%;
 
-  /* Muted Dark - Slate 800 */
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 210 30% 12%;
+  --muted-foreground: 40 10% 55%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 0 60% 30%;
+  --destructive-foreground: 40 20% 92%;
 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 212.7 26.8% 83.9%;
+  --border: 210 30% 14%;
+  --input: 210 30% 14%;
+  --ring: 44 54% 54%;
 }
 
 @theme inline {
@@ -107,30 +92,18 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  /* Custom Animations */
+  /* Custom Animations and Utilities */
   --animate-fade-in: fade-in 0.5s ease-out;
   --animate-slide-up: slide-up 0.5s ease-out;
 
   @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 
   @keyframes slide-up {
-    0% {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 }
 
@@ -140,7 +113,21 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground selection:bg-accent/30 selection:text-accent-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-background/60 backdrop-blur-lg border-border/50;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
   }
 }

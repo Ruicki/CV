@@ -1,8 +1,15 @@
+export interface ProjectMetric {
+    value: string;
+    label: string;
+}
+
 export interface Project {
     title: string;
     description: string;
     tags: string[];
-    imageUrl?: string;
+    mainIcon: string;
+    logoSrc?: string;
+    metric: ProjectMetric;
     demoUrl?: string;
     repoUrl?: string;
 }

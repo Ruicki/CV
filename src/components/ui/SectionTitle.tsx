@@ -8,8 +8,12 @@ interface SectionTitleProps {
 
 export function SectionTitle({ children, className }: SectionTitleProps) {
     return (
-        <h2 className={cn("text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl", className)}>
-            {children}
-        </h2>
+        <div className={cn("relative mb-12", className)}>
+            <h2 className="text-2xl font-extrabold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl">
+                {children}
+                <span className="text-primary">.</span>
+            </h2>
+            <div className="mt-2 h-1.5 w-20 rounded-full bg-linear-to-r from-primary to-accent" />
+        </div>
     );
 }
