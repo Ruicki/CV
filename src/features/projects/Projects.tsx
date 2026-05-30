@@ -45,8 +45,21 @@ export default function Projects() {
                         const Icon = getIcon(project.mainIcon);
                         return (
                             <SlideUp key={index} delay={0.1 * index}>
-                                <div className="p-6 rounded-2xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group">
-                                    <div className="flex items-start gap-4">
+                                <div className="rounded-2xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden">
+                                    {/* Preview Image */}
+                                    {project.previewSrc && (
+                                        <div className="relative w-full h-48 md:h-64 overflow-hidden bg-muted/30">
+                                            <Image
+                                                src={project.previewSrc}
+                                                alt={`Preview de ${project.title}`}
+                                                fill
+                                                className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
+                                        </div>
+                                    )}
+
+                                    <div className="p-6 flex items-start gap-4">
                                         <div className="h-14 w-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
                                             {project.logoSrc ? (
                                                 <Image src={project.logoSrc} alt={project.title} width={56} height={56} className="w-full h-full object-contain" />

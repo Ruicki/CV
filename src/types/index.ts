@@ -9,6 +9,7 @@ export interface Project {
     tags: string[];
     mainIcon: string;
     logoSrc?: string;
+    previewSrc?: string;
     metric: ProjectMetric;
     demoUrl?: string;
     repoUrl?: string;

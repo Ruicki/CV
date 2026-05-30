@@ -9,7 +9,21 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: "Ricardo Pinzón - Desarrollador de Software",
-  description: "Portafolio profesional de Ricardo Pinzón. Desarrollador Full Stack especializado en JavaScript, TypeScript, React y Node.js.",
+  description: "Desarrollador de software especializado en JavaScript, React y Node.js. Portafolio con proyectos reales y experiencia en desarrollo web full stack.",
+  metadataBase: new URL("https://cv-main-rho.vercel.app"),
+  openGraph: {
+    title: "Ricardo Pinzón - Desarrollador de Software",
+    description: "Desarrollador de software especializado en JavaScript, React y Node.js. Portafolio con proyectos reales y experiencia en desarrollo web full stack.",
+    url: "https://cv-main-rho.vercel.app",
+    siteName: "Ricardo Pinzón - Portafolio",
+    locale: "es_PA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ricardo Pinzón - Desarrollador de Software",
+    description: "Desarrollador de software especializado en JavaScript, React y Node.js.",
+  },
   icons: {
     icon: "/favicon.ico",
   },
