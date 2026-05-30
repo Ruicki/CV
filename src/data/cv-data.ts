@@ -6,9 +6,9 @@ export const personalInfo: PersonalInfo = {
     email: "rickipinzon@gmail.com",
     phone: "6875-0112",
     location: "Panamá, 24 de Diciembre",
-    about: `Desarrollador de software con más de 3 años de experiencia en JavaScript y TypeScript, especializado en desarrollo frontend con React y backend con Node.js. 
-  Apasionado por crear interfaces de usuario dinámicas, limpias y escalables. He desarrollado proyectos funcionales incluyendo aplicaciones financieras, plataformas de ventas y más.
-  Actualmente en búsqueda activa de mi próxima oportunidad laboral como desarrollador, con muchas ganas de aportar valor desde el primer día.`,
+    about: `Desarrollador de software con más de 3 años de experiencia en JavaScript, especializado en desarrollo frontend con React y backend con Node.js. 
+  Actualmente explorando TypeScript para escribir código más robusto y escalable. Me gusta crear interfaces limpias y funcionales, y he trabajado en proyectos propios que van desde apps financieras hasta plataformas de ventas.
+  Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.`,
     avatar: "/foto-cv-1.jpg",
 };
 
@@ -41,8 +41,8 @@ export const experience: Experience[] = [
         position: "Desarrollador de Software",
         startDate: "Dic 2025",
         endDate: "Presente",
-        description: "Desarrollo de proyectos full-stack por cuenta propia. Creación de aplicaciones web modernas con React, Next.js, Node.js y TypeScript. Despliegue y mantenimiento en Vercel.",
-        technologies: ["React", "Next.js", "TypeScript", "Node.js", "Vercel"],
+        description: "Desarrollo de proyectos full-stack por cuenta propia. Creación de aplicaciones web con React, Next.js y Node.js. Explorando TypeScript para mejorar la calidad del código. Despliegue y mantenimiento en Vercel.",
+        technologies: ["React", "Next.js", "Node.js", "TypeScript (aprendiendo)", "Vercel"],
     },
     {
         company: "Carbone S.A",
@@ -80,8 +80,8 @@ export const education: Education[] = [
 export const projects: Project[] = [
     {
         title: "Finanzas Maestras",
-        description: "Plataforma integral para la gestión de finanzas personales. Controla ingresos, gastos, deudas y metas con una interfaz moderna y reportes dinámicos.",
-        tags: ["TypeScript", "Next.js", "React", "Full Stack"],
+        description: "App para llevar el control de tus finanzas personales. Puedes registrar ingresos, gastos, deudas y metas desde un solo lugar.",
+        tags: ["Next.js", "React", "TypeScript (aprendiendo)", "Full Stack"],
         mainIcon: "Nextjs",
         metric: { value: "3", label: "Módulos Financieros" },
         demoUrl: "https://finanzas-maestras.vercel.app/",
@@ -103,7 +103,7 @@ export const skills: Skill[] = [
     { name: "HTML5", category: "frontend", icon: "Html5" },
     { name: "CSS3", category: "frontend", icon: "Css3" },
     { name: "JavaScript", category: "frontend", icon: "JavaScript" },
-    { name: "TypeScript", category: "frontend", icon: "TypeScript" },
+    { name: "TypeScript", category: "frontend", icon: "TypeScript", note: "Explorando" },
     { name: "React", category: "frontend", icon: "React" },
     { name: "Next.js", category: "frontend", icon: "Nextjs" },
     { name: "TailwindCSS", category: "frontend", icon: "Tailwind" },

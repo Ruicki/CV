@@ -32,9 +32,7 @@ export default function Contact() {
 
                         <div className="flex flex-wrap gap-5">
                             <a
-                                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href={`mailto:${personalInfo.email}`}
                                 className={cn(
                                     buttonVariants({ size: 'lg', className: "h-14 px-8 rounded-2xl gap-3 text-lg font-bold shadow-xl hover:shadow-primary/20 transition-all hover:scale-105" })
                                 )}
@@ -97,7 +95,7 @@ export default function Contact() {
                                         <p className="text-lg font-black text-foreground group-hover:text-primary transition-colors">{personalInfo.phone}</p>
                                     </div>
                                 </a>
-                                <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 group">
+                                <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-5 group">
                                     <div className="h-14 w-14 rounded-2xl bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform duration-300">
                                         <Mail className="h-6 w-6" />
                                     </div>

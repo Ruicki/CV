@@ -35,7 +35,7 @@ export default function Projects() {
                     </FadeIn>
                     <SlideUp delay={0.2}>
                         <p className="max-w-[700px] text-muted-foreground text-base md:text-lg leading-relaxed">
-                            Una selección curada de trabajos que demuestran mi pasión por el desarrollo y mi capacidad para resolver problemas complejos.
+                            Algunos de los proyectos en los que he trabajado. Cada uno fue un reto diferente y aprendí algo nuevo en el proceso.
                         </p>
                     </SlideUp>
                 </div>

@@ -76,7 +76,12 @@ export default function Skills() {
                                     className="flex items-center gap-4 px-6 py-4 rounded-2xl border border-border/60 bg-background/80 backdrop-blur-sm shadow-sm hover:border-primary/40 hover:bg-primary/5 hover:shadow-md hover:shadow-primary/5 transition-all duration-300 cursor-default shrink-0 hover:-translate-y-1"
                                 >
                                     <Icon className="h-7 w-7 shrink-0" />
-                                    <span className="text-base font-bold text-foreground whitespace-nowrap">{skill.name}</span>
+                                    <div className="flex flex-col">
+                                        <span className="text-base font-bold text-foreground whitespace-nowrap">{skill.name}</span>
+                                        {skill.note && (
+                                            <span className="text-[10px] text-muted-foreground font-medium whitespace-nowrap">{skill.note}</span>
+                                        )}
+                                    </div>
                                 </div>
                             );
                         })}

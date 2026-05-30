@@ -28,6 +28,7 @@ export interface Skill {
     level?: number; // 0-100
     icon?: string;
     category: "frontend" | "backend" | "tools" | "other";
+    note?: string;
 }
 
 export interface SocialLink {
