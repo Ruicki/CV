@@ -15,11 +15,9 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontFamily: "Georgia, serif",
-          fontSize: 13,
-          fontWeight: "bold",
+          fontSize: 12,
+          fontWeight: 700,
           color: "#c9a84c",
-          letterSpacing: "0.5px",
         }}
       >
         RP
