@@ -58,11 +58,14 @@ function ProjectCard({ project, delay = 0 }: { project: typeof projects[0]; dela
                         ))}
                     </div>
                     {project.demoUrl && (
-                        <Button size="sm" className="w-fit h-9 px-5 rounded-full inline-flex flex-row items-center gap-2 text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300" asChild>
-                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink className="h-3.5 w-3.5 shrink-0" /> Sitio Web
-                            </a>
-                        </Button>
+                        <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-fit inline-flex flex-row items-center gap-2 h-9 px-5 rounded-full text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300"
+                        >
+                            <ExternalLink className="h-3.5 w-3.5 shrink-0" /> Sitio Web
+                        </a>
                     )}
                 </div>
             </div>
@@ -137,11 +140,14 @@ export default function Projects() {
                                                     </Badge>
                                                 ))}
                                                 {featured.demoUrl && (
-                                                    <Button size="sm" className="ml-auto h-9 px-5 rounded-full inline-flex flex-row items-center gap-2 text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300" asChild>
-                                                        <a href={featured.demoUrl} target="_blank" rel="noopener noreferrer">
-                                                            <ExternalLink className="h-3.5 w-3.5 shrink-0" /> Sitio Web
-                                                        </a>
-                                                    </Button>
+                                                    <a
+                                                        href={featured.demoUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="ml-auto inline-flex flex-row items-center gap-2 h-9 px-5 rounded-full text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300"
+                                                    >
+                                                        <ExternalLink className="h-3.5 w-3.5 shrink-0" /> Sitio Web
+                                                    </a>
                                                 )}
                                             </div>
                                         </div>
