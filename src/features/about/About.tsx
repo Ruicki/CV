@@ -30,7 +30,10 @@ export default function About() {
                         <div className="p-1 rounded-2xl bg-linear-to-br from-primary/10 to-accent/10 border border-border/50 shadow-inner">
                             <div className="p-6 md:p-8 rounded-2xl bg-background/50 backdrop-blur-sm space-y-6 leading-relaxed">
                                 <p className="text-lg md:text-xl text-foreground font-medium whitespace-pre-line">
-                                    {personalInfo.about}
+                                    {personalInfo.about.replace("Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.", "").trim()}
+                                </p>
+                                <p className="text-lg md:text-xl font-bold text-primary border-l-4 border-primary pl-4">
+                                    Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.
                                 </p>
                                 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-border/40">
