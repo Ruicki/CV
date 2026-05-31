@@ -46,19 +46,19 @@ export const experience: Experience[] = [
     },
     {
         company: "Carbone S.A",
-        position: "Soporte Técnico y Gestión de Datos",
+        position: "Desarrollador de Herramientas Internas",
         startDate: "Sep 2025",
         endDate: "Dic 2025",
-        description: "Automatización y digitalización de procesos de inventario mediante hojas de cálculo avanzadas y herramientas de gestión de datos. Diseño de plantillas con fórmulas complejas para el seguimiento en tiempo real de entradas y salidas de productos. Identificación de cuellos de botella en flujos operativos y propuesta de soluciones basadas en lógica de sistemas. Colaboración con el equipo para implementar mejoras que redujeron errores manuales en el registro de datos.",
-        technologies: ["Excel Avanzado", "Gestión de Datos", "Automatización de Procesos", "Análisis de Flujos"],
+        description: "Desarrollo y automatización de herramientas internas para la gestión y control de inventario mediante hojas de cálculo avanzadas con macros y fórmulas complejas. Diseño de dashboards de seguimiento en tiempo real para entradas y salidas de productos. Análisis de flujos operativos para detectar ineficiencias y proponer soluciones técnicas. Documentación de procesos y capacitación al equipo en el uso de las herramientas desarrolladas, logrando una reducción significativa de errores manuales en el registro de datos.",
+        technologies: ["Excel Avanzado", "Macros", "Automatización", "Dashboards", "Documentación Técnica"],
     },
     {
         company: "Hong Kong Smart",
-        position: "Analista de Datos y Soporte de Sistemas",
+        position: "Desarrollador Junior y Soporte de Sistemas",
         startDate: "Nov 2023",
         endDate: "Sep 2025",
-        description: "Administración y mantenimiento de bases de datos de productos, precios y clientes. Generación de reportes periódicos de ventas e inventario con análisis de tendencias para apoyar la toma de decisiones gerenciales. Implementación de mejoras en el sistema de registro digital, reduciendo tiempos de consulta y errores de captura. Soporte técnico interno a usuarios, resolución de incidencias en equipos y software de gestión. Coordinación entre áreas para garantizar la integridad y consistencia de los datos.",
-        technologies: ["Bases de Datos", "Análisis de Datos", "Reportes", "Soporte Técnico", "Excel", "Sistemas de Gestión"],
+        description: "Desarrollo y mantenimiento de soluciones digitales para la gestión de productos, precios y clientes. Construcción de reportes automatizados de ventas e inventario con análisis de tendencias para la toma de decisiones gerenciales. Optimización del sistema de registro digital reduciendo tiempos de consulta y errores de captura de datos. Soporte técnico a usuarios internos, diagnóstico y resolución de incidencias en equipos y software. Coordinación entre áreas para garantizar la integridad, consistencia y disponibilidad de los datos del negocio.",
+        technologies: ["Desarrollo de Herramientas", "Bases de Datos", "Automatización", "Soporte Técnico", "Análisis de Datos", "Sistemas de Gestión"],
     },
 ];
 
