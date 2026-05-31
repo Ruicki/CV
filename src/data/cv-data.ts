@@ -49,16 +49,16 @@ export const experience: Experience[] = [
         position: "Soporte Técnico y Gestión de Datos",
         startDate: "Sep 2025",
         endDate: "Dic 2025",
-        description: "Automatización y digitalización de procesos de inventario mediante hojas de cálculo avanzadas y herramientas de gestión de datos. Identificación de mejoras en flujos operativos aplicando lógica de sistemas.",
-        technologies: ["Excel Avanzado", "Gestión de Datos", "Automatización de Procesos"],
+        description: "Automatización y digitalización de procesos de inventario mediante hojas de cálculo avanzadas y herramientas de gestión de datos. Diseño de plantillas con fórmulas complejas para el seguimiento en tiempo real de entradas y salidas de productos. Identificación de cuellos de botella en flujos operativos y propuesta de soluciones basadas en lógica de sistemas. Colaboración con el equipo para implementar mejoras que redujeron errores manuales en el registro de datos.",
+        technologies: ["Excel Avanzado", "Gestión de Datos", "Automatización de Procesos", "Análisis de Flujos"],
     },
     {
         company: "Hong Kong Smart",
         position: "Analista de Datos y Soporte de Sistemas",
         startDate: "Nov 2023",
         endDate: "Sep 2025",
-        description: "Administración y mantenimiento de bases de datos de productos y clientes. Generación de reportes de ventas e inventario con análisis de datos para la toma de decisiones. Soporte técnico interno y optimización de procesos digitales.",
-        technologies: ["Bases de Datos", "Análisis de Datos", "Reportes", "Soporte Técnico"],
+        description: "Administración y mantenimiento de bases de datos de productos, precios y clientes. Generación de reportes periódicos de ventas e inventario con análisis de tendencias para apoyar la toma de decisiones gerenciales. Implementación de mejoras en el sistema de registro digital, reduciendo tiempos de consulta y errores de captura. Soporte técnico interno a usuarios, resolución de incidencias en equipos y software de gestión. Coordinación entre áreas para garantizar la integridad y consistencia de los datos.",
+        technologies: ["Bases de Datos", "Análisis de Datos", "Reportes", "Soporte Técnico", "Excel", "Sistemas de Gestión"],
     },
 ];
 
