@@ -46,19 +46,19 @@ export const experience: Experience[] = [
     },
     {
         company: "Carbone S.A",
-        position: "Ayudante de Inventario",
+        position: "Soporte Técnico y Gestión de Datos",
         startDate: "Sep 2025",
         endDate: "Dic 2025",
-        description: "Apoyo en la gestión de inventario y optimización de procesos logísticos.",
-        technologies: ["Logística", "Inventario"],
+        description: "Automatización y digitalización de procesos de inventario mediante hojas de cálculo avanzadas y herramientas de gestión de datos. Identificación de mejoras en flujos operativos aplicando lógica de sistemas.",
+        technologies: ["Excel Avanzado", "Gestión de Datos", "Automatización de Procesos"],
     },
     {
         company: "Hong Kong Smart",
-        position: "Asistente de Inventario y Ventas",
+        position: "Analista de Datos y Soporte de Sistemas",
         startDate: "Nov 2023",
         endDate: "Sep 2025",
-        description: "Gestión de inventario y atención al cliente. Resolución de problemas en entornos de ventas y bodega.",
-        technologies: ["Ventas", "Atención al Cliente", "Inventario"],
+        description: "Administración y mantenimiento de bases de datos de productos y clientes. Generación de reportes de ventas e inventario con análisis de datos para la toma de decisiones. Soporte técnico interno y optimización de procesos digitales.",
+        technologies: ["Bases de Datos", "Análisis de Datos", "Reportes", "Soporte Técnico"],
     },
 ];
 
