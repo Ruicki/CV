@@ -25,7 +25,7 @@ const getIcon = (iconName?: string) => {
 function ProjectCard({ project, delay = 0 }: { project: typeof projects[0]; delay?: number }) {
     const Icon = getIcon(project.mainIcon);
     return (
-        <SlideUp delay={delay}>
+        <SlideUp delay={delay} className="h-full">
             <div className="rounded-2xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden flex flex-col h-full">
                 {project.previewSrc && (
                     <div className="w-full overflow-hidden h-48 shrink-0">
@@ -97,14 +97,14 @@ export default function Projects() {
                 </div>
 
                 {/* ── DESKTOP (lg+): Bento Grid ── */}
-                <div className="hidden lg:grid grid-cols-3 gap-5">
+                <div className="hidden lg:grid grid-cols-3 gap-5 items-stretch">
 
                     {/* Proyecto destacado — ocupa 2 columnas, imagen arriba + info abajo */}
                     {featured && (() => {
                         const Icon = getIcon(featured.mainIcon);
                         return (
-                            <SlideUp delay={0.1} className="col-span-2">
-                                <div className="rounded-3xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden flex flex-col">
+                            <SlideUp delay={0.1} className="col-span-2 h-full">
+                                <div className="h-full rounded-3xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden flex flex-col">
                                     {featured.previewSrc && (
                                         <div className="w-full overflow-hidden h-72 shrink-0">
                                             <img
@@ -152,9 +152,11 @@ export default function Projects() {
                     })()}
 
                     {/* Proyectos secundarios — 1 columna, apilados verticalmente */}
-                    <div className="col-span-1 flex flex-col gap-5">
+                    <div className="col-span-1 flex flex-col gap-5 h-full">
                         {rest.map((project, index) => (
-                            <ProjectCard key={index} project={project} delay={0.2 + 0.1 * index} />
+                            <div key={index} className="flex-1">
+                                <ProjectCard project={project} delay={0.2 + 0.1 * index} />
+                            </div>
                         ))}
                     </div>
 
