@@ -24,6 +24,15 @@ export const metadata: Metadata = {
     title: "Ricardo Pinzón - Desarrollador de Software",
     description: "Desarrollador de software especializado en JavaScript, React y Node.js.",
   },
+  icons: {
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
