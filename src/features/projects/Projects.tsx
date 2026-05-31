@@ -68,15 +68,12 @@ export default function Projects() {
                             <SlideUp key={index} delay={0.1 * index}>
                                 <div className="rounded-2xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden">
                                     {project.previewSrc && (
-                                        <div className="relative w-full h-56 overflow-hidden">
-                                            <Image
+                                        <div className="w-full overflow-hidden" style={{ height: "224px" }}>
+                                            <img
                                                 src={project.previewSrc}
                                                 alt={`Preview de ${project.title}`}
-                                                fill
-                                                className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                                                sizes="100vw"
+                                                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent pointer-events-none" />
                                         </div>
                                     )}
                                     <div className="p-5 flex items-start gap-4">
@@ -125,15 +122,12 @@ export default function Projects() {
                                 <SlideUp key={index} delay={0.1 * index}>
                                     <div className="rounded-2xl glass border border-border/50 hover:border-primary/30 transition-all duration-300 group overflow-hidden h-full flex flex-col">
                                         {project.previewSrc && (
-                                            <div className="relative w-full h-56 overflow-hidden">
-                                                <Image
+                                            <div className="w-full overflow-hidden" style={{ height: "224px" }}>
+                                                <img
                                                     src={project.previewSrc}
                                                     alt={`Preview de ${project.title}`}
-                                                    fill
-                                                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                                                    sizes="50vw"
+                                                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                                 />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent pointer-events-none" />
                                             </div>
                                         )}
                                         <div className="p-6 flex items-start gap-4 flex-1">
@@ -185,15 +179,12 @@ export default function Projects() {
                                         <div className="flex flex-row h-64">
                                             {/* Imagen izquierda */}
                                             {project.previewSrc && (
-                                                <div className="relative w-1/2 shrink-0 overflow-hidden">
-                                                    <Image
+                                                <div className="w-1/2 shrink-0 overflow-hidden" style={{ height: "256px" }}>
+                                                    <img
                                                         src={project.previewSrc}
                                                         alt={`Preview de ${project.title}`}
-                                                        fill
-                                                        className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                                                        sizes="40vw"
+                                                        className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                                     />
-                                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/20 pointer-events-none" />
                                                 </div>
                                             )}
                                             {/* Info derecha */}
