@@ -58,7 +58,7 @@ function ProjectCard({ project, delay = 0 }: { project: typeof projects[0]; dela
                         ))}
                     </div>
                     {project.demoUrl && (
-                        <Button size="sm" className="w-full h-9 rounded-full gap-2 text-xs font-bold bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 transition-all" asChild>
+                        <Button size="sm" className="w-fit h-9 px-5 rounded-full gap-2 text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300" asChild>
                             <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
                                 <ExternalLink className="h-3.5 w-3.5" /> Sitio Web
                             </a>
@@ -137,7 +137,7 @@ export default function Projects() {
                                                     </Badge>
                                                 ))}
                                                 {featured.demoUrl && (
-                                                    <Button size="sm" className="ml-auto h-9 px-5 rounded-full gap-2 text-xs font-bold shadow-md hover:shadow-accent/30 hover:scale-105 transition-all duration-300 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+                                                    <Button size="sm" className="ml-auto h-9 px-5 rounded-full gap-2 text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300" asChild>
                                                         <a href={featured.demoUrl} target="_blank" rel="noopener noreferrer">
                                                             <ExternalLink className="h-3.5 w-3.5" /> Sitio Web
                                                         </a>
