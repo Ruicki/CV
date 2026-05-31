@@ -8,14 +8,14 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
-  title: "Ricardo Pinzón - Desarrollador de Software",
+  title: "RicardoPinzonDev",
   description: "Desarrollador de software especializado en JavaScript, React y Node.js. Portafolio con proyectos reales y experiencia en desarrollo web full stack.",
   metadataBase: new URL("https://cv-main-rho.vercel.app"),
   openGraph: {
     title: "Ricardo Pinzón - Desarrollador de Software",
     description: "Desarrollador de software especializado en JavaScript, React y Node.js. Portafolio con proyectos reales y experiencia en desarrollo web full stack.",
     url: "https://cv-main-rho.vercel.app",
-    siteName: "Ricardo Pinzón - Portafolio",
+    siteName: "RicardoPinzonDev",
     locale: "es_PA",
     type: "website",
   },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: "Desarrollador de software especializado en JavaScript, React y Node.js.",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.svg",
   },
 };
 

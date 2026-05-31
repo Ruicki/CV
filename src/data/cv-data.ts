@@ -83,7 +83,7 @@ export const projects: Project[] = [
         description: "App para llevar el control de tus finanzas personales. Puedes registrar ingresos, gastos, deudas y metas desde un solo lugar.",
         tags: ["Next.js", "React", "TypeScript (aprendiendo)", "Full Stack"],
         mainIcon: "Nextjs",
-        previewSrc: "/finanzsa-m.png",
+        previewSrc: "/finanzas-m.png",
         metric: { value: "3", label: "Módulos Financieros" },
         demoUrl: "https://finanzas-maestras.vercel.app/",
         repoUrl: "",
