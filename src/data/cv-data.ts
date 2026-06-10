@@ -6,7 +6,7 @@ export const personalInfo: PersonalInfo = {
     email: "rickipinzon@gmail.com",
     phone: "6875-0112",
     location: "Panamá, 24 de Diciembre",
-    about: `Desarrollador de software con más de 3 años de experiencia en JavaScript, especializado en desarrollo frontend con React y backend con Node.js. 
+    about: `Desarrollador de software Autodidacta con enfoque en JavaScript y React, con proyectos propios en producción, especializado en desarrollo frontend y backend con Node.js. 
   Actualmente explorando TypeScript para escribir código más robusto y escalable. Me gusta crear interfaces limpias y funcionales, y he trabajado en proyectos propios que van desde apps financieras hasta plataformas de ventas.
   Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.`,
     avatar: "/foto-cv-1.jpg",
