@@ -32,8 +32,7 @@ export default function Hero() {
 
                     <SlideUp delay={0.3}>
                         <p className="mx-auto max-w-[800px] text-muted-foreground text-base md:text-lg lg:text-xl leading-relaxed">
-                            Especializado en <span className="text-foreground font-semibold">JavaScript</span> y el ecosistema <span className="text-foreground font-semibold">React</span>.
-                            Explorando <span className="text-foreground font-semibold">TypeScript</span> para construir soluciones web más robustas y escalables.
+                            {personalInfo.heroTagline}
                         </p>
                     </SlideUp>
                 </div>

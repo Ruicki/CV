@@ -1,16 +1,23 @@
-import { Project, Experience, Skill, SocialLink, PersonalInfo, Education } from "@/types";
+import { Project, Experience, Skill, SocialLink, PersonalInfo, Education, Language, SkillCategory } from "@/types";
 
 export const personalInfo: PersonalInfo = {
     name: "Ricardo Pinzón",
-    title: "Desarrollador de Software",
+    title: "Desarrollador de Software Junior",
     email: "rickipinzon@gmail.com",
     phone: "6875-0112",
     location: "Panamá, 24 de Diciembre",
-    about: `Desarrollador de software Autodidacta con enfoque en JavaScript y React, con proyectos propios en producción, especializado en desarrollo frontend y backend con Node.js. 
-  Actualmente explorando TypeScript para escribir código más robusto y escalable. Me gusta crear interfaces limpias y funcionales, y he trabajado en proyectos propios que van desde apps financieras hasta plataformas de ventas.
-  Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.`,
+    heroTagline: "Desarrollo frontend y backend con React, Node.js y Docker, con foco en entregar soluciones funcionales de principio a fin.",
+    about: "Desarrollador junior autodidacta, formado construyendo software real: aplicaciones de finanzas, e-commerce y automatización de procesos legales, ya en producción y usadas por clientes. Cómodo moviéndome entre frontend y backend (React, Node.js, Docker), con foco en entregar soluciones funcionales de principio a fin, no solo código de práctica.",
+    availability: "Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.",
     avatar: "/foto-cv-1.jpg",
+    // TODO: copiar Ricardo_Pinzon_CV.pdf (oct. 2026) a public/ y descomentar para mostrar el botón.
+    // cvUrl: "/Ricardo_Pinzon_CV.pdf",
 };
+
+export const languages: Language[] = [
+    { name: "Español", level: "Nativo" },
+    { name: "Inglés", level: "Intermedio (lectura técnica y comunicación para desarrolladores)" },
+];
 
 export const socialLinks: SocialLink[] = [
     {
@@ -20,7 +27,7 @@ export const socialLinks: SocialLink[] = [
     },
     {
         platform: "LinkedIn",
-        url: "https://linkedin.com/in/Ricardo-Pinzon-dev",
+        url: "https://www.linkedin.com/in/ricardo-pinzon-dev",
         icon: "Linkedin",
     },
     {
@@ -35,30 +42,49 @@ export const socialLinks: SocialLink[] = [
     },
 ];
 
+// Experiencia en desarrollo: timeline principal con detalle.
 export const experience: Experience[] = [
     {
         company: "Freelancer / Independiente",
-        position: "Desarrollador de Software",
+        position: "Desarrollador Freelance",
+        location: "Panamá (Remoto)",
         startDate: "Dic 2025",
-        endDate: "Presente",
-        description: "Desarrollo de proyectos full-stack por cuenta propia. Creación de aplicaciones web con React, Next.js y Node.js. Explorando TypeScript para mejorar la calidad del código. Despliegue y mantenimiento en Vercel.",
-        technologies: ["React", "Next.js", "Node.js", "TypeScript (aprendiendo)", "Vercel"],
+        endDate: "Ago 2026",
+        description: "Desarrollo de SaaS para clientes (proyectos pagados) y proyectos propios.",
+        highlights: [
+            "Sistema de Control de Acceso (SCA): freelance pagado (mar.–jun. 2026). React, Node.js, Express, Prisma y PostgreSQL; despliegue con Docker y Docker Compose (multi-stage builds).",
+            "Gestor de Informes Periciales: SaaS MERN, freelance pagado (dic. 2025 – feb. 2026). Redujo la generación de informes de 2 horas a 10 minutos (91 % de mejora). PDF con PDFKit y notificaciones automáticas por SMTP (Nodemailer).",
+            "Proyectos propios: Finanzas Maestras, Visualmind y Merkando.",
+        ],
+        technologies: ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Docker", "Docker Compose", "PDFKit", "Nodemailer"],
+    },
+];
+
+// Otra experiencia laboral: bloque compacto, una línea por puesto.
+export const otherExperience: Experience[] = [
+    {
+        company: "Yooni",
+        position: "Ayudante General",
+        location: "Panamá",
+        startDate: "Ago 2026",
+        endDate: "Actualidad",
+        description: "Ventas, control de inventario, registro de productos en sistema y cobros.",
     },
     {
-        company: "Carbone S.A",
-        position: "Desarrollador de Herramientas Internas",
+        company: "Carbone S.A.",
+        position: "Ayudante de Inventario",
+        location: "Panamá",
         startDate: "Sep 2025",
         endDate: "Dic 2025",
-        description: "Desarrollo y automatización de herramientas internas para la gestión y control de inventario mediante hojas de cálculo avanzadas con macros y fórmulas complejas. Diseño de dashboards de seguimiento en tiempo real para entradas y salidas de productos. Análisis de flujos operativos para detectar ineficiencias y proponer soluciones técnicas. Documentación de procesos y capacitación al equipo en el uso de las herramientas desarrolladas, logrando una reducción significativa de errores manuales en el registro de datos.",
-        technologies: ["Excel Avanzado", "Macros", "Automatización", "Dashboards", "Documentación Técnica"],
+        description: "Manejo y control de mercancía en bodega, registro con lector PDT.",
     },
     {
         company: "Hong Kong Smart",
-        position: "Desarrollador Junior y Soporte de Sistemas",
+        position: "Ventas, Logística e Inventario",
+        location: "Panamá",
         startDate: "Nov 2023",
         endDate: "Sep 2025",
-        description: "Desarrollo y mantenimiento de soluciones digitales para la gestión de productos, precios y clientes. Construcción de reportes automatizados de ventas e inventario con análisis de tendencias para la toma de decisiones gerenciales. Optimización del sistema de registro digital reduciendo tiempos de consulta y errores de captura de datos. Soporte técnico a usuarios internos, diagnóstico y resolución de incidencias en equipos y software. Coordinación entre áreas para garantizar la integridad, consistencia y disponibilidad de los datos del negocio.",
-        technologies: ["Desarrollo de Herramientas", "Bases de Datos", "Automatización", "Soporte Técnico", "Análisis de Datos", "Sistemas de Gestión"],
+        description: "",
     },
 ];
 
@@ -79,44 +105,106 @@ export const education: Education[] = [
 
 export const projects: Project[] = [
     {
-        title: "Finanzas Maestras",
-        description: "App para llevar el control de tus finanzas personales. Puedes registrar ingresos, gastos, deudas y metas desde un solo lugar.",
-        tags: ["Next.js", "React", "TypeScript (aprendiendo)", "Full Stack"],
-        mainIcon: "Nextjs",
-        previewSrc: "/finanzas-m.png",
-        metric: { value: "3", label: "Módulos Financieros" },
-        demoUrl: "https://finanzas-maestras.vercel.app/",
-        repoUrl: "",
+        slug: "gestor-informes",
+        title: "Gestor de Informes Periciales",
+        status: "cliente",
+        description: "SaaS que automatiza informes periciales: de 2 h a 10 min (91 % de mejora). Genera PDF y envía notificaciones automáticas.",
+        tags: ["React", "Node.js", "Express", "MongoDB", "PDFKit", "Nodemailer", "Docker"],
+        mainIcon: "Node",
+        metric: { value: "91 %", label: "Menos tiempo por informe" },
+        // TODO: captura con datos ficticios. Necesita MongoDB (no disponible al generar las demás):
+        // levantar con `docker compose up` y correr scripts/screenshots.mjs gestor-informes=http://localhost:<puerto>
+        privateNote: "Proyecto de cliente · código privado",
     },
     {
+        slug: "sca",
+        title: "Sistema de Control de Acceso (SCA)",
+        status: "cliente",
+        description: "Sistema de control de acceso y registro de visitantes que funciona 100 % offline en una Mini PC, con acceso remoto seguro vía Tailscale, módulo de auditoría y acceso administrativo protegido por PIN cifrado.",
+        tags: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Docker", "Docker Compose"],
+        mainIcon: "React",
+        images: { desktop: "/projects/sca/desktop.webp", mobile: "/projects/sca/mobile.webp" },
+        privateNote: "Proyecto de cliente · código privado",
+    },
+    {
+        slug: "finanzas-maestras",
+        title: "Finanzas Maestras",
+        status: "propio",
+        description: "Gestor de finanzas personales: cuentas, ingresos, gastos, deudas y metas de ahorro en un solo lugar.",
+        tags: ["Next.js", "React", "TypeScript", "Node.js"],
+        mainIcon: "Nextjs",
+        images: { desktop: "/projects/finanzas-maestras/desktop.webp", mobile: "/projects/finanzas-maestras/mobile.webp" },
+        demoUrl: "https://finanzas-maestras.vercel.app/",
+    },
+    {
+        slug: "visualmind",
         title: "Visualmind",
-        description: "Plataforma de ventas con panel administrativo. Proyecto full-stack con frontend en React y backend en Node.js.",
-        tags: ["JavaScript", "React", "Node.js", "Full Stack"],
+        status: "propio",
+        description: "Plataforma de ventas (e-commerce) full-stack con panel administrativo.",
+        tags: ["React", "Node.js"],
         mainIcon: "React",
         logoSrc: "/visualmind-logo.png",
-        previewSrc: "/visualmind.png",
-        metric: { value: "10+", label: "Páginas y Secciones" },
+        images: { desktop: "/projects/visualmind/desktop.webp", mobile: "/projects/visualmind/mobile.webp" },
         demoUrl: "https://visualmind-one.vercel.app/",
-        repoUrl: "",
+    },
+    {
+        slug: "merkando",
+        title: "Merkando",
+        status: "propio",
+        description: "App móvil para compras de supermercado: comparación de precios, despensa, listas compartidas y estimados de gasto.",
+        tags: ["React Native", "Expo", "TypeScript", "SQLite", "Firebase", "Zustand"],
+        mainIcon: "React",
+        images: { mobile: "/projects/merkando/mobile.webp" },
+        // TODO: agregar repoUrl cuando el repositorio de Merkando sea público.
+        privateNote: "Repositorio privado",
+    },
+    {
+        slug: "job-tracker",
+        title: "Job Tracker",
+        status: "en-desarrollo",
+        description: "Dashboard para gestionar postulaciones: puntúa cada vacante de 0 a 100 según encaje de stack y seniority.",
+        tags: ["React", "Vite", "Node.js", "Express", "MongoDB"],
+        mainIcon: "React",
+        // TODO: agregar repoUrl y capturas (seed.js + scripts/screenshots.mjs) cuando el repositorio del Job Tracker esté en GitHub.
     },
 ];
 
+export const skillCategories: { id: SkillCategory; label: string }[] = [
+    { id: "frontend-backend", label: "Frontend & Backend" },
+    { id: "devops", label: "DevOps & Infraestructura" },
+    { id: "metodologias", label: "Metodologías" },
+    { id: "ia", label: "IA & Productividad" },
+    { id: "herramientas", label: "Herramientas" },
+];
+
 export const skills: Skill[] = [
-    { name: "HTML5", category: "frontend", icon: "Html5" },
-    { name: "CSS3", category: "frontend", icon: "Css3" },
-    { name: "JavaScript", category: "frontend", icon: "JavaScript" },
-    { name: "TypeScript", category: "frontend", icon: "TypeScript", note: "Explorando" },
-    { name: "React", category: "frontend", icon: "React" },
-    { name: "Next.js", category: "frontend", icon: "Nextjs" },
-    { name: "TailwindCSS", category: "frontend", icon: "Tailwind" },
-    { name: "Vite", category: "frontend", icon: "Vite" },
-    { name: "React Router", category: "frontend", icon: "Router" },
-    { name: "Node.js", category: "backend", icon: "Node" },
-    { name: "Express.js", category: "backend", icon: "Express" },
-    { name: "Postman", category: "backend", icon: "Postman" },
-    { name: "Git", category: "tools", icon: "Git" },
-    { name: "Vercel", category: "tools", icon: "Vercel" },
-    { name: "ESLint", category: "tools", icon: "Eslint" },
-    { name: "Prettier", category: "tools", icon: "Prettier" },
-    { name: "Notion", category: "tools", icon: "Notion" },
+    { name: "JavaScript (ES6+)", category: "frontend-backend", icon: "JavaScript" },
+    { name: "TypeScript", category: "frontend-backend", icon: "TypeScript" },
+    { name: "React", category: "frontend-backend", icon: "React" },
+    { name: "Next.js", category: "frontend-backend", icon: "Nextjs" },
+    { name: "Node.js", category: "frontend-backend", icon: "Node" },
+    { name: "Express", category: "frontend-backend", icon: "Express" },
+    { name: "MongoDB", category: "frontend-backend", icon: "Database" },
+    { name: "SQL", category: "frontend-backend", icon: "Database" },
+    { name: "PostgreSQL", category: "frontend-backend", icon: "Database" },
+    { name: "HTML/CSS", category: "frontend-backend", icon: "Html5" },
+    { name: "Tailwind CSS", category: "frontend-backend", icon: "Tailwind" },
+    { name: "Docker", category: "devops", icon: "Container" },
+    { name: "Docker Compose", category: "devops", icon: "Container" },
+    { name: "Git", category: "devops", icon: "Git" },
+    { name: "GitHub", category: "devops", icon: "Github" },
+    { name: "REST APIs", category: "devops", icon: "Api" },
+    { name: "Vercel", category: "devops", icon: "Vercel" },
+    { name: "MVC", category: "metodologias", icon: "Layers" },
+    { name: "Automatización de procesos", category: "metodologias", icon: "Workflow" },
+    { name: "Clean Code", category: "metodologias", icon: "Sparkles" },
+    { name: "Gemini", category: "ia", icon: "Bot" },
+    { name: "Opencode", category: "ia", icon: "Bot" },
+    { name: "Ollama", category: "ia", icon: "Bot" },
+    { name: "Prompt Engineering", category: "ia", icon: "Bot" },
+    { name: "Claude Code", category: "ia", icon: "Bot" },
+    { name: "Vite", category: "herramientas", icon: "Vite" },
+    { name: "Postman", category: "herramientas", icon: "Postman" },
+    { name: "ESLint", category: "herramientas", icon: "Eslint" },
+    { name: "Prettier", category: "herramientas", icon: "Prettier" },
 ];

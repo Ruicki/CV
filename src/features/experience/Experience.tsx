@@ -1,10 +1,10 @@
 "use client";
 
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/motion";
-import { experience } from "@/data/cv-data";
+import { experience, otherExperience } from "@/data/cv-data";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Badge } from "@/components/ui/Badge";
-import { Briefcase, Calendar, Building2 } from "lucide-react";
+import { Briefcase, Calendar, Building2, MapPin } from "lucide-react";
 
 export default function Experience() {
     return (
@@ -22,7 +22,7 @@ export default function Experience() {
                     </FadeIn>
                     <SlideUp delay={0.2}>
                         <p className="max-w-[800px] text-muted-foreground text-base md:text-lg leading-relaxed">
-                            Mi evolución en el mundo laboral, adaptándome a diferentes roles y optimizando procesos en cada paso.
+                            Mi experiencia en desarrollo de software y, más abajo, mi otra experiencia laboral.
                         </p>
                     </SlideUp>
                 </div>
@@ -61,8 +61,13 @@ export default function Experience() {
                                                         <h3 className="text-xl font-bold tracking-tight group-hover:text-primary transition-colors duration-300">
                                                             {job.position}
                                                         </h3>
-                                                        <div className="flex items-center gap-2 text-primary font-bold text-sm tracking-wide uppercase">
-                                                            <Building2 className="h-4 w-4" /> {job.company}
+                                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+                                                            <span className="flex items-center gap-2 text-primary font-bold tracking-wide uppercase">
+                                                                <Building2 className="h-4 w-4" /> {job.company}
+                                                            </span>
+                                                            <span className="flex items-center gap-1.5 text-muted-foreground font-medium">
+                                                                <MapPin className="h-3.5 w-3.5" /> {job.location}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,6 +75,16 @@ export default function Experience() {
                                                 <p className="text-muted-foreground text-base leading-relaxed">
                                                     {job.description}
                                                 </p>
+
+                                                {job.highlights && (
+                                                    <ul className="space-y-2 list-disc pl-5 marker:text-primary">
+                                                        {job.highlights.map((item) => (
+                                                            <li key={item} className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                                                                {item}
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
 
                                                 {job.technologies && (
                                                     <div className="flex flex-wrap gap-2 pt-2">
@@ -87,6 +102,29 @@ export default function Experience() {
                             </StaggerItem>
                         ))}
                     </StaggerContainer>
+
+                    {/* Otra experiencia laboral: bloque compacto, sin tags */}
+                    <SlideUp className="max-w-5xl mx-auto">
+                        <div className="p-6 md:p-8 rounded-3xl glass border border-border/50">
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-5">
+                                Otra experiencia laboral
+                            </h3>
+                            <ul className="divide-y divide-border/40">
+                                {otherExperience.map((job) => (
+                                    <li key={job.company} className="py-3 first:pt-0 last:pb-0 flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4">
+                                        <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/70 md:w-44 shrink-0">
+                                            {job.startDate} – {job.endDate}
+                                        </span>
+                                        <p className="text-sm text-muted-foreground leading-relaxed">
+                                            <span className="font-semibold text-foreground">{job.position}</span>
+                                            {" · "}{job.company}, {job.location}
+                                            {job.description && <>. {job.description}</>}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </SlideUp>
                 </div>
             </div>
         </section>
