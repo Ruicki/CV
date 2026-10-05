@@ -11,7 +11,7 @@ const navLinks = [
     { name: "Inicio", href: "#hero" },
     { name: "Sobre mí", href: "#about" },
     { name: "Proyectos", href: "#projects" },
-    { name: "Skills", href: "#skills" },
+    { name: "Habilidades", href: "#skills" },
     { name: "Experiencia", href: "#experience" },
     { name: "Educación", href: "#education" },
     { name: "Contacto", href: "#contact" },

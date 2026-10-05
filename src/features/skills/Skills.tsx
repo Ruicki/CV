@@ -45,7 +45,7 @@ export default function Skills() {
                 <div className="flex flex-col mb-16 space-y-4">
                     <FadeIn>
                         <SectionTitle>
-                            Habilidades Técnicas
+                            Habilidades técnicas
                         </SectionTitle>
                     </FadeIn>
                     <SlideUp delay={0.2}>
