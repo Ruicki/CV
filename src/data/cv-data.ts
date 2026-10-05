@@ -1,4 +1,4 @@
-import { Project, Experience, Skill, SocialLink, PersonalInfo, Education, Language } from "@/types";
+import { Project, Experience, Skill, SocialLink, PersonalInfo, Education, Language, SkillCategory } from "@/types";
 
 export const personalInfo: PersonalInfo = {
     name: "Ricardo Pinzón",
@@ -163,22 +163,42 @@ export const projects: Project[] = [
     },
 ];
 
+export const skillCategories: { id: SkillCategory; label: string }[] = [
+    { id: "frontend-backend", label: "Frontend & Backend" },
+    { id: "devops", label: "DevOps & Infraestructura" },
+    { id: "metodologias", label: "Metodologías" },
+    { id: "ia", label: "IA & Productividad" },
+    { id: "herramientas", label: "Herramientas" },
+];
+
 export const skills: Skill[] = [
-    { name: "HTML5", category: "frontend", icon: "Html5" },
-    { name: "CSS3", category: "frontend", icon: "Css3" },
-    { name: "JavaScript", category: "frontend", icon: "JavaScript" },
-    { name: "TypeScript", category: "frontend", icon: "TypeScript", note: "Explorando" },
-    { name: "React", category: "frontend", icon: "React" },
-    { name: "Next.js", category: "frontend", icon: "Nextjs" },
-    { name: "TailwindCSS", category: "frontend", icon: "Tailwind" },
-    { name: "Vite", category: "frontend", icon: "Vite" },
-    { name: "React Router", category: "frontend", icon: "Router" },
-    { name: "Node.js", category: "backend", icon: "Node" },
-    { name: "Express.js", category: "backend", icon: "Express" },
-    { name: "Postman", category: "backend", icon: "Postman" },
-    { name: "Git", category: "tools", icon: "Git" },
-    { name: "Vercel", category: "tools", icon: "Vercel" },
-    { name: "ESLint", category: "tools", icon: "Eslint" },
-    { name: "Prettier", category: "tools", icon: "Prettier" },
-    { name: "Notion", category: "tools", icon: "Notion" },
+    { name: "JavaScript (ES6+)", category: "frontend-backend", icon: "JavaScript" },
+    { name: "TypeScript", category: "frontend-backend", icon: "TypeScript" },
+    { name: "React", category: "frontend-backend", icon: "React" },
+    { name: "Next.js", category: "frontend-backend", icon: "Nextjs" },
+    { name: "Node.js", category: "frontend-backend", icon: "Node" },
+    { name: "Express", category: "frontend-backend", icon: "Express" },
+    { name: "MongoDB", category: "frontend-backend", icon: "Database" },
+    { name: "SQL", category: "frontend-backend", icon: "Database" },
+    { name: "PostgreSQL", category: "frontend-backend", icon: "Database" },
+    { name: "HTML/CSS", category: "frontend-backend", icon: "Html5" },
+    { name: "Tailwind CSS", category: "frontend-backend", icon: "Tailwind" },
+    { name: "Docker", category: "devops", icon: "Container" },
+    { name: "Docker Compose", category: "devops", icon: "Container" },
+    { name: "Git", category: "devops", icon: "Git" },
+    { name: "GitHub", category: "devops", icon: "Github" },
+    { name: "REST APIs", category: "devops", icon: "Api" },
+    { name: "Vercel", category: "devops", icon: "Vercel" },
+    { name: "MVC", category: "metodologias", icon: "Layers" },
+    { name: "Automatización de procesos", category: "metodologias", icon: "Workflow" },
+    { name: "Clean Code", category: "metodologias", icon: "Sparkles" },
+    { name: "Gemini", category: "ia", icon: "Bot" },
+    { name: "Opencode", category: "ia", icon: "Bot" },
+    { name: "Ollama", category: "ia", icon: "Bot" },
+    { name: "Prompt Engineering", category: "ia", icon: "Bot" },
+    { name: "Claude Code", category: "ia", icon: "Bot" },
+    { name: "Vite", category: "herramientas", icon: "Vite" },
+    { name: "Postman", category: "herramientas", icon: "Postman" },
+    { name: "ESLint", category: "herramientas", icon: "Eslint" },
+    { name: "Prettier", category: "herramientas", icon: "Prettier" },
 ];

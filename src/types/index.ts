@@ -37,12 +37,13 @@ export interface Experience {
     technologies?: string[];
 }
 
+export type SkillCategory = "frontend-backend" | "devops" | "metodologias" | "ia" | "herramientas";
+
 export interface Skill {
     name: string;
     level?: number; // 0-100
     icon?: string;
-    category: "frontend" | "backend" | "tools" | "other";
-    note?: string;
+    category: SkillCategory;
 }
 
 export interface SocialLink {
