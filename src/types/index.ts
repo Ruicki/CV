@@ -3,16 +3,27 @@ export interface ProjectMetric {
     label: string;
 }
 
+export type ProjectStatus = "cliente" | "propio" | "en-desarrollo";
+
+export interface ProjectImages {
+    desktop?: string;
+    mobile?: string;
+}
+
 export interface Project {
+    slug: string;
     title: string;
+    status: ProjectStatus;
     description: string;
     tags: string[];
     mainIcon: string;
     logoSrc?: string;
-    previewSrc?: string;
-    metric: ProjectMetric;
+    images?: ProjectImages;
+    metric?: ProjectMetric;
     demoUrl?: string;
     repoUrl?: string;
+    /** Código no público (proyecto de cliente o repo privado). */
+    privateNote?: string;
 }
 
 export interface Experience {
