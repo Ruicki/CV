@@ -17,7 +17,7 @@ export default function Experience() {
                 <div className="flex flex-col mb-16 space-y-4">
                     <FadeIn>
                         <SectionTitle>
-                            Trayectoria Profesional
+                            Trayectoria profesional
                         </SectionTitle>
                     </FadeIn>
                     <SlideUp delay={0.2}>

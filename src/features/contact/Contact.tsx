@@ -59,12 +59,12 @@ export default function Contact() {
                         <div className="space-y-4">
                             <FadeIn>
                                 <SectionTitle>
-                                    ¡Construyamos Algo <br /><span className="text-gradient">Increíble </span> Juntos
+                                    ¡Construyamos algo <br /><span className="text-gradient">increíble</span> juntos!
                                 </SectionTitle>
                             </FadeIn>
                             <SlideUp delay={0.2}>
                                 <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-2xl">
-                                    Estoy en búsqueda de nuevas oportunidades y colaboraciones. Si tienes un proyecto o una vacante, me encantaría escucharte.
+                                    Busco nuevas oportunidades y colaboraciones. Si tienes un proyecto o una vacante, me encantaría escucharte.
                                 </p>
                             </SlideUp>
                         </div>
@@ -147,7 +147,7 @@ export default function Contact() {
                                         </>
                                     ) : (
                                         <>
-                                            <Send className="h-5 w-5" /> Enviar Mensaje
+                                            <Send className="h-5 w-5" /> Enviar mensaje
                                         </>
                                     )}
                                 </button>
@@ -184,7 +184,7 @@ export default function Contact() {
                     <SlideUp delay={0.4} className="relative">
                         <div className="absolute -inset-6 rounded-[2.5rem] bg-linear-to-br from-primary/10 to-accent/10 blur-3xl opacity-60"></div>
                         <div className="glass p-10 rounded-[2.5rem] border-2 border-white/20 dark:border-white/10 shadow-2xl space-y-8">
-                            <h3 className="text-xl font-bold tracking-tight text-foreground">Información Directa</h3>
+                            <h3 className="text-xl font-bold tracking-tight text-foreground">Información directa</h3>
 
                             <div className="space-y-6">
                                 <a href={`tel:${personalInfo.phone.replace(/\s/g, "")}`} className="flex items-center gap-5 group">
@@ -192,7 +192,7 @@ export default function Contact() {
                                         <Phone className="h-6 w-6" />
                                     </div>
                                     <div className="space-y-0.5">
-                                        <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">Llámanos</span>
+                                        <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60">Llámame</span>
                                         <p className="text-lg font-black text-foreground group-hover:text-primary transition-colors">{personalInfo.phone}</p>
                                     </div>
                                 </a>

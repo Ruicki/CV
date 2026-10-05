@@ -9,7 +9,7 @@ import { Icons } from "@/components/ui/icons";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
-import type { Project, ProjectStatus } from "@/types";
+import type { Project } from "@/types";
 
 function ProjectIcon({ name, className }: { name?: string; className?: string }) {
     switch (name) {
@@ -21,12 +21,6 @@ function ProjectIcon({ name, className }: { name?: string; className?: string })
         default: return <Code2 className={className} />;
     }
 }
-
-const STATUS: Record<ProjectStatus, { label: string; className: string }> = {
-    cliente: { label: "Cliente", className: "bg-accent/15 text-accent border-accent/30" },
-    propio: { label: "Propio", className: "bg-primary/10 text-primary border-primary/20" },
-    "en-desarrollo": { label: "En desarrollo", className: "bg-muted text-muted-foreground border-border" },
-};
 
 const linkClass =
     "w-fit inline-flex flex-row items-center gap-2 h-9 px-5 rounded-full text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300";
@@ -73,7 +67,6 @@ function ProjectPreview({ project }: { project: Project }) {
 }
 
 function ProjectCard({ project, delay = 0 }: { project: Project; delay?: number }) {
-    const status = STATUS[project.status];
 
     return (
         <SlideUp delay={delay} className="h-full">
@@ -89,10 +82,7 @@ function ProjectCard({ project, delay = 0 }: { project: Project; delay?: number 
                                 <ProjectIcon name={project.mainIcon} className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
                             )}
                         </div>
-                        <div className="flex-1 min-w-0 space-y-1">
-                            <Badge className={cn("inline-block border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider", status.className)}>
-                                {status.label}
-                            </Badge>
+                        <div className="flex-1 min-w-0 self-center">
                             <h3 className="text-lg font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
                                 {project.title}
                             </h3>
@@ -152,7 +142,7 @@ export default function Projects() {
                     </FadeIn>
                     <SlideUp delay={0.2}>
                         <p className="max-w-[600px] text-muted-foreground text-base md:text-lg leading-relaxed">
-                            Proyectos para clientes y proyectos propios, de principio a fin.
+                            Proyectos que he desarrollado de principio a fin.
                         </p>
                     </SlideUp>
                 </div>

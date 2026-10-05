@@ -15,7 +15,7 @@ export default function About() {
                 <div className="flex flex-col mb-16 space-y-4">
                     <FadeIn>
                         <SectionTitle>
-                            Sobre Mí
+                            Sobre mí
                         </SectionTitle>
                     </FadeIn>
                     <SlideUp delay={0.2}>

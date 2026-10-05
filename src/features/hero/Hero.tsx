@@ -26,7 +26,7 @@ export default function Hero() {
 
                     <SlideUp delay={0.2}>
                         <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                            Hola, Soy <span className="text-gradient decoration-4">{personalInfo.name}</span>
+                            Hola, soy <span className="text-gradient decoration-4">{personalInfo.name}</span>
                         </h1>
                     </SlideUp>
 

@@ -5,10 +5,10 @@ export const personalInfo: PersonalInfo = {
     title: "Desarrollador de Software Junior",
     email: "rickipinzon@gmail.com",
     phone: "6875-0112",
-    location: "Panamá, 24 de Diciembre",
-    heroTagline: "Desarrollo frontend y backend con React, Node.js y Docker, con foco en entregar soluciones funcionales de principio a fin.",
-    about: "Desarrollador junior autodidacta, formado construyendo software real: aplicaciones de finanzas, e-commerce y automatización de procesos legales, ya en producción y usadas por clientes. Cómodo moviéndome entre frontend y backend (React, Node.js, Docker), con foco en entregar soluciones funcionales de principio a fin, no solo código de práctica.",
-    availability: "Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.",
+    location: "24 de Diciembre, Panamá",
+    heroTagline: "Desarrollo frontend y backend con React, Node.js y Docker, y me enfoco en entregar soluciones funcionales de principio a fin.",
+    about: "Soy desarrollador junior autodidacta y me he formado construyendo software real: aplicaciones de finanzas, comercio electrónico y automatización de procesos legales, que ya están en producción y que usan clientes reales. Me muevo con comodidad entre el frontend y el backend (React, Node.js, Docker) y me enfoco en entregar soluciones funcionales de principio a fin, no solo código de práctica.",
+    availability: "Busco mi próxima oportunidad como desarrollador y tengo muchas ganas de aportar desde el primer día.",
     avatar: "/foto-cv-1.jpg",
     // TODO: copiar Ricardo_Pinzon_CV.pdf (oct. 2026) a public/ y descomentar para mostrar el botón.
     // cvUrl: "/Ricardo_Pinzon_CV.pdf",
@@ -50,10 +50,10 @@ export const experience: Experience[] = [
         location: "Panamá (Remoto)",
         startDate: "Dic 2025",
         endDate: "Ago 2026",
-        description: "Desarrollo de SaaS para clientes (proyectos pagados) y proyectos propios.",
+        description: "Desarrollo de SaaS para clientes (proyectos pagados) y de proyectos propios.",
         highlights: [
-            "Sistema de Control de Acceso (SCA): freelance pagado (mar.–jun. 2026). React, Node.js, Express, Prisma y PostgreSQL; despliegue con Docker y Docker Compose (multi-stage builds).",
-            "Gestor de Informes Periciales: SaaS MERN, freelance pagado (dic. 2025 – feb. 2026). Redujo la generación de informes de 2 horas a 10 minutos (91 % de mejora). PDF con PDFKit y notificaciones automáticas por SMTP (Nodemailer).",
+            "Sistema de Control de Acceso (SCA): proyecto freelance pagado (mar.–jun. 2026), desarrollado con React, Node.js, Express, Prisma y PostgreSQL y desplegado con Docker y Docker Compose (multi-stage builds).",
+            "Gestor de Informes Periciales: SaaS MERN, proyecto freelance pagado (dic. 2025 – feb. 2026). Reduce el tiempo de generación de cada informe de 2 horas a 10 minutos (91 % menos), genera el PDF con PDFKit y envía notificaciones automáticas por SMTP (Nodemailer).",
             "Proyectos propios: Finanzas Maestras, Visualmind y Merkando.",
         ],
         technologies: ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Docker", "Docker Compose", "PDFKit", "Nodemailer"],
@@ -68,7 +68,7 @@ export const otherExperience: Experience[] = [
         location: "Panamá",
         startDate: "Ago 2026",
         endDate: "Actualidad",
-        description: "Ventas, control de inventario, registro de productos en sistema y cobros.",
+        description: "Ventas, control de inventario, registro de productos en el sistema y cobros.",
     },
     {
         company: "Carbone S.A.",
@@ -76,7 +76,7 @@ export const otherExperience: Experience[] = [
         location: "Panamá",
         startDate: "Sep 2025",
         endDate: "Dic 2025",
-        description: "Manejo y control de mercancía en bodega, registro con lector PDT.",
+        description: "Manejo y control de mercancía en bodega y registro con lector PDT.",
     },
     {
         company: "Hong Kong Smart",
@@ -97,7 +97,7 @@ export const education: Education[] = [
     },
     {
         institution: "Colegio José Antonio Remón Cantera",
-        degree: "Bachiller en Ciencias con Énfasis en Informática",
+        degree: "Bachiller en Ciencias con énfasis en Informática",
         startDate: "2013",
         endDate: "2015",
     },
@@ -107,29 +107,26 @@ export const projects: Project[] = [
     {
         slug: "gestor-informes",
         title: "Gestor de Informes Periciales",
-        status: "cliente",
-        description: "SaaS que automatiza informes periciales: de 2 h a 10 min (91 % de mejora). Genera PDF y envía notificaciones automáticas.",
+        description: "SaaS que automatiza la elaboración de informes periciales: reduce el tiempo de cada informe de 2 h a 10 min (91 % menos), genera el PDF y envía notificaciones automáticas.",
         tags: ["React", "Node.js", "Express", "MongoDB", "PDFKit", "Nodemailer", "Docker"],
         mainIcon: "Node",
         metric: { value: "91 %", label: "Menos tiempo por informe" },
         // TODO: captura con datos ficticios. Necesita MongoDB (no disponible al generar las demás):
         // levantar con `docker compose up` y correr scripts/screenshots.mjs gestor-informes=http://localhost:<puerto>
-        privateNote: "Proyecto de cliente · código privado",
+        privateNote: "Código privado",
     },
     {
         slug: "sca",
         title: "Sistema de Control de Acceso (SCA)",
-        status: "cliente",
-        description: "Sistema de control de acceso y registro de visitantes que funciona 100 % offline en una Mini PC, con acceso remoto seguro vía Tailscale, módulo de auditoría y acceso administrativo protegido por PIN cifrado.",
+        description: "Sistema de control de acceso y registro de visitantes que funciona 100 % sin conexión en una mini PC. Incluye acceso remoto seguro mediante Tailscale, un módulo de auditoría y un panel administrativo protegido con PIN cifrado.",
         tags: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Docker", "Docker Compose"],
         mainIcon: "React",
         images: { desktop: "/projects/sca/desktop.webp", mobile: "/projects/sca/mobile.webp" },
-        privateNote: "Proyecto de cliente · código privado",
+        privateNote: "Código privado",
     },
     {
         slug: "finanzas-maestras",
         title: "Finanzas Maestras",
-        status: "propio",
         description: "Gestor de finanzas personales: cuentas, ingresos, gastos, deudas y metas de ahorro en un solo lugar.",
         tags: ["Next.js", "React", "TypeScript", "Node.js"],
         mainIcon: "Nextjs",
@@ -139,7 +136,6 @@ export const projects: Project[] = [
     {
         slug: "visualmind",
         title: "Visualmind",
-        status: "propio",
         description: "Plataforma de ventas (e-commerce) full-stack con panel administrativo.",
         tags: ["React", "Node.js"],
         mainIcon: "React",
@@ -150,7 +146,6 @@ export const projects: Project[] = [
     {
         slug: "merkando",
         title: "Merkando",
-        status: "propio",
         description: "App móvil para compras de supermercado: comparación de precios, despensa, listas compartidas y estimados de gasto.",
         tags: ["React Native", "Expo", "TypeScript", "SQLite", "Firebase", "Zustand"],
         mainIcon: "React",
@@ -161,8 +156,7 @@ export const projects: Project[] = [
     {
         slug: "job-tracker",
         title: "Job Tracker",
-        status: "en-desarrollo",
-        description: "Dashboard para gestionar postulaciones: puntúa cada vacante de 0 a 100 según encaje de stack y seniority.",
+        description: "Panel para gestionar postulaciones que puntúa cada vacante de 0 a 100 según su encaje con mi stack y mi nivel de experiencia.",
         tags: ["React", "Vite", "Node.js", "Express", "MongoDB"],
         mainIcon: "React",
         // TODO: agregar repoUrl y capturas (seed.js + scripts/screenshots.mjs) cuando el repositorio del Job Tracker esté en GitHub.
