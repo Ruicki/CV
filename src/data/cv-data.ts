@@ -27,8 +27,7 @@ export const socialLinks: SocialLink[] = [
     },
     {
         platform: "LinkedIn",
-        // TODO: confirmar la URL correcta. El CV dice "ricardopinzon-dev" y la web usaba "Ricardo-Pinzon-dev".
-        url: "https://linkedin.com/in/Ricardo-Pinzon-dev",
+        url: "https://www.linkedin.com/in/ricardo-pinzon-dev",
         icon: "Linkedin",
     },
     {
