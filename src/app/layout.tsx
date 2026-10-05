@@ -8,14 +8,22 @@ import { personalInfo } from "@/data/cv-data";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
+// Dominio público del sitio. En Vercel se toma del dominio de producción del proyecto
+// (variable de sistema VERCEL_PROJECT_PRODUCTION_URL); NEXT_PUBLIC_SITE_URL permite fijarlo a mano.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
   title: "RicardoPinzonDev",
   description: personalInfo.heroTagline,
-  metadataBase: new URL("https://ricardopinzondev.vercel.app"),
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: `${personalInfo.name} - ${personalInfo.title}`,
     description: personalInfo.heroTagline,
-    url: "https://ricardopinzondev.vercel.app",
+    url: siteUrl,
     siteName: "RicardoPinzonDev",
     locale: "es_PA",
     type: "website",
