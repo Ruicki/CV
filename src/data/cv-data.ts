@@ -41,30 +41,49 @@ export const socialLinks: SocialLink[] = [
     },
 ];
 
+// Experiencia en desarrollo: timeline principal con detalle.
 export const experience: Experience[] = [
     {
         company: "Freelancer / Independiente",
-        position: "Desarrollador de Software",
+        position: "Desarrollador Freelance",
+        location: "Panamá (Remoto)",
         startDate: "Dic 2025",
-        endDate: "Presente",
-        description: "Desarrollo de proyectos full-stack por cuenta propia. Creación de aplicaciones web con React, Next.js y Node.js. Explorando TypeScript para mejorar la calidad del código. Despliegue y mantenimiento en Vercel.",
-        technologies: ["React", "Next.js", "Node.js", "TypeScript (aprendiendo)", "Vercel"],
+        endDate: "Ago 2026",
+        description: "Desarrollo de SaaS para clientes (proyectos pagados) y proyectos propios.",
+        highlights: [
+            "Sistema de Control de Acceso (SCA): freelance pagado (mar.–jun. 2026). React, Node.js, Express, Prisma y PostgreSQL; despliegue con Docker y Docker Compose (multi-stage builds).",
+            "Gestor de Informes Periciales: SaaS MERN, freelance pagado (dic. 2025 – feb. 2026). Redujo la generación de informes de 2 horas a 10 minutos (91 % de mejora). PDF con PDFKit y notificaciones automáticas por SMTP (Nodemailer).",
+            "Proyectos propios: Finanzas Maestras, Visualmind y Merkando.",
+        ],
+        technologies: ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Docker", "Docker Compose", "PDFKit", "Nodemailer"],
+    },
+];
+
+// Otra experiencia laboral: bloque compacto, una línea por puesto.
+export const otherExperience: Experience[] = [
+    {
+        company: "Yooni",
+        position: "Ayudante General",
+        location: "Panamá",
+        startDate: "Ago 2026",
+        endDate: "Actualidad",
+        description: "Ventas, control de inventario, registro de productos en sistema y cobros.",
     },
     {
-        company: "Carbone S.A",
-        position: "Desarrollador de Herramientas Internas",
+        company: "Carbone S.A.",
+        position: "Ayudante de Inventario",
+        location: "Panamá",
         startDate: "Sep 2025",
         endDate: "Dic 2025",
-        description: "Desarrollo y automatización de herramientas internas para la gestión y control de inventario mediante hojas de cálculo avanzadas con macros y fórmulas complejas. Diseño de dashboards de seguimiento en tiempo real para entradas y salidas de productos. Análisis de flujos operativos para detectar ineficiencias y proponer soluciones técnicas. Documentación de procesos y capacitación al equipo en el uso de las herramientas desarrolladas, logrando una reducción significativa de errores manuales en el registro de datos.",
-        technologies: ["Excel Avanzado", "Macros", "Automatización", "Dashboards", "Documentación Técnica"],
+        description: "Manejo y control de mercancía en bodega, registro con lector PDT.",
     },
     {
         company: "Hong Kong Smart",
-        position: "Desarrollador Junior y Soporte de Sistemas",
+        position: "Ventas, Logística e Inventario",
+        location: "Panamá",
         startDate: "Nov 2023",
         endDate: "Sep 2025",
-        description: "Desarrollo y mantenimiento de soluciones digitales para la gestión de productos, precios y clientes. Construcción de reportes automatizados de ventas e inventario con análisis de tendencias para la toma de decisiones gerenciales. Optimización del sistema de registro digital reduciendo tiempos de consulta y errores de captura de datos. Soporte técnico a usuarios internos, diagnóstico y resolución de incidencias en equipos y software. Coordinación entre áreas para garantizar la integridad, consistencia y disponibilidad de los datos del negocio.",
-        technologies: ["Desarrollo de Herramientas", "Bases de Datos", "Automatización", "Soporte Técnico", "Análisis de Datos", "Sistemas de Gestión"],
+        description: "",
     },
 ];
 
