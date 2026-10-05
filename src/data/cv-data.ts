@@ -10,6 +10,8 @@ export const personalInfo: PersonalInfo = {
     about: "Desarrollador junior autodidacta, formado construyendo software real: aplicaciones de finanzas, e-commerce y automatización de procesos legales, ya en producción y usadas por clientes. Cómodo moviéndome entre frontend y backend (React, Node.js, Docker), con foco en entregar soluciones funcionales de principio a fin, no solo código de práctica.",
     availability: "Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.",
     avatar: "/foto-cv-1.jpg",
+    // TODO: copiar Ricardo_Pinzon_CV.pdf (oct. 2026) a public/ y descomentar para mostrar el botón.
+    // cvUrl: "/Ricardo_Pinzon_CV.pdf",
 };
 
 export const languages: Language[] = [

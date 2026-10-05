@@ -62,6 +62,8 @@ export interface PersonalInfo {
     about: string;
     availability: string;
     avatar: string;
+    /** Ruta pública del CV en PDF. El botón de descarga solo aparece si existe. */
+    cvUrl?: string;
 }
 
 export interface Language {

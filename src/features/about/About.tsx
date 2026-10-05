@@ -2,7 +2,7 @@
 
 import { FadeIn, SlideUp } from "@/components/ui/motion";
 import { personalInfo } from "@/data/cv-data";
-import { MapPin, Mail, Code } from "lucide-react";
+import { MapPin, Mail, Code, Download } from "lucide-react";
 import Image from "next/image";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 
@@ -35,6 +35,15 @@ export default function About() {
                                 <p className="text-lg md:text-xl font-bold text-primary border-l-4 border-primary pl-4">
                                     {personalInfo.availability}
                                 </p>
+                                {personalInfo.cvUrl && (
+                                    <a
+                                        href={personalInfo.cvUrl}
+                                        download
+                                        className="w-fit inline-flex flex-row items-center gap-2 h-10 px-5 rounded-full text-sm font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300"
+                                    >
+                                        <Download className="h-4 w-4 shrink-0" /> Descargar CV
+                                    </a>
+                                )}
                                 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-border/40">
                                     <div className="flex items-center gap-3 text-muted-foreground">
