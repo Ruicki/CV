@@ -30,10 +30,10 @@ export default function About() {
                         <div className="p-1 rounded-2xl bg-linear-to-br from-primary/10 to-accent/10 border border-border/50 shadow-inner">
                             <div className="p-6 md:p-8 rounded-2xl bg-background/50 backdrop-blur-sm space-y-6 leading-relaxed">
                                 <p className="text-lg md:text-xl text-foreground font-medium whitespace-pre-line">
-                                    {personalInfo.about.replace("Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.", "").trim()}
+                                    {personalInfo.about}
                                 </p>
                                 <p className="text-lg md:text-xl font-bold text-primary border-l-4 border-primary pl-4">
-                                    Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.
+                                    {personalInfo.availability}
                                 </p>
                                 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-border/40">
@@ -71,8 +71,8 @@ export default function About() {
                         <div className="absolute -bottom-4 -right-10 hidden sm:block p-5 glass border rounded-2xl shadow-xl">
                             <div className="flex items-center gap-3">
                                 <Code className="h-5 w-5 text-primary" />
-                                <div className="text-[10px] leading-tight font-bold uppercase tracking-widest text-muted-foreground">
-                                    Full Stack <br /> Developer
+                                <div className="max-w-[120px] text-[10px] leading-tight font-bold uppercase tracking-widest text-muted-foreground">
+                                    {personalInfo.title}
                                 </div>
                             </div>
                         </div>

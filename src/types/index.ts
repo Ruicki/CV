@@ -44,8 +44,15 @@ export interface PersonalInfo {
     email: string;
     phone: string;
     location: string;
+    heroTagline: string;
     about: string;
+    availability: string;
     avatar: string;
+}
+
+export interface Language {
+    name: string;
+    level: string;
 }
 
 export interface Education {

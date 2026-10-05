@@ -1,16 +1,21 @@
-import { Project, Experience, Skill, SocialLink, PersonalInfo, Education } from "@/types";
+import { Project, Experience, Skill, SocialLink, PersonalInfo, Education, Language } from "@/types";
 
 export const personalInfo: PersonalInfo = {
     name: "Ricardo Pinzón",
-    title: "Desarrollador de Software",
+    title: "Desarrollador de Software Junior",
     email: "rickipinzon@gmail.com",
     phone: "6875-0112",
     location: "Panamá, 24 de Diciembre",
-    about: `Desarrollador de software Autodidacta con enfoque en JavaScript y React, con proyectos propios en producción, especializado en desarrollo frontend y backend con Node.js. 
-  Actualmente explorando TypeScript para escribir código más robusto y escalable. Me gusta crear interfaces limpias y funcionales, y he trabajado en proyectos propios que van desde apps financieras hasta plataformas de ventas.
-  Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.`,
+    heroTagline: "Desarrollo frontend y backend con React, Node.js y Docker, con foco en entregar soluciones funcionales de principio a fin.",
+    about: "Desarrollador junior autodidacta, formado construyendo software real: aplicaciones de finanzas, e-commerce y automatización de procesos legales, ya en producción y usadas por clientes. Cómodo moviéndome entre frontend y backend (React, Node.js, Docker), con foco en entregar soluciones funcionales de principio a fin, no solo código de práctica.",
+    availability: "Estoy buscando mi próxima oportunidad como desarrollador y con muchas ganas de aportar desde el primer día.",
     avatar: "/foto-cv-1.jpg",
 };
+
+export const languages: Language[] = [
+    { name: "Español", level: "Nativo" },
+    { name: "Inglés", level: "Intermedio (lectura técnica y comunicación para desarrolladores)" },
+];
 
 export const socialLinks: SocialLink[] = [
     {
@@ -20,6 +25,7 @@ export const socialLinks: SocialLink[] = [
     },
     {
         platform: "LinkedIn",
+        // TODO: confirmar la URL correcta. El CV dice "ricardopinzon-dev" y la web usaba "Ricardo-Pinzon-dev".
         url: "https://linkedin.com/in/Ricardo-Pinzon-dev",
         icon: "Linkedin",
     },

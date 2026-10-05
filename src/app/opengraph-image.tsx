@@ -60,7 +60,7 @@ export default function OGImage() {
             textTransform: "uppercase",
           }}
         >
-          Desarrollador de Software
+          Desarrollador de Software Junior
         </div>
 
         {/* Divider */}
@@ -81,7 +81,7 @@ export default function OGImage() {
             letterSpacing: "1px",
           }}
         >
-          React · Next.js · Node.js · TypeScript
+          React · Node.js · TypeScript · Docker
         </div>
       </div>
     ),

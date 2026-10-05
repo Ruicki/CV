@@ -3,17 +3,18 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
+import { personalInfo } from "@/data/cv-data";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
 export const metadata: Metadata = {
   title: "RicardoPinzonDev",
-  description: "Desarrollador de software especializado en JavaScript, React y Node.js. Portafolio con proyectos reales y experiencia en desarrollo web full stack.",
+  description: personalInfo.heroTagline,
   metadataBase: new URL("https://ricardopinzondev.vercel.app"),
   openGraph: {
-    title: "Ricardo Pinzón - Desarrollador de Software",
-    description: "Desarrollador de software especializado en JavaScript, React y Node.js. Portafolio con proyectos reales y experiencia en desarrollo web full stack.",
+    title: `${personalInfo.name} - ${personalInfo.title}`,
+    description: personalInfo.heroTagline,
     url: "https://ricardopinzondev.vercel.app",
     siteName: "RicardoPinzonDev",
     locale: "es_PA",
@@ -21,8 +22,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ricardo Pinzón - Desarrollador de Software",
-    description: "Desarrollador de software especializado en JavaScript, React y Node.js.",
+    title: `${personalInfo.name} - ${personalInfo.title}`,
+    description: personalInfo.heroTagline,
   },
   icons: {
     icon: [
