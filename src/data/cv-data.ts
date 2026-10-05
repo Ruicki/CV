@@ -111,6 +111,8 @@ export const projects: Project[] = [
         tags: ["React", "Node.js", "Express", "MongoDB", "PDFKit", "Nodemailer", "Docker"],
         mainIcon: "Node",
         metric: { value: "91 %", label: "Menos tiempo por informe" },
+        // TODO: captura con datos ficticios. Necesita MongoDB (no disponible al generar las demás):
+        // levantar con `docker compose up` y correr scripts/screenshots.mjs gestor-informes=http://localhost:<puerto>
         privateNote: "Proyecto de cliente · código privado",
     },
     {
@@ -120,6 +122,7 @@ export const projects: Project[] = [
         description: "Sistema de control de acceso y registro de visitantes que funciona 100 % offline en una Mini PC, con acceso remoto seguro vía Tailscale, módulo de auditoría y acceso administrativo protegido por PIN cifrado.",
         tags: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Docker", "Docker Compose"],
         mainIcon: "React",
+        images: { desktop: "/projects/sca/desktop.webp", mobile: "/projects/sca/mobile.webp" },
         privateNote: "Proyecto de cliente · código privado",
     },
     {
@@ -129,7 +132,7 @@ export const projects: Project[] = [
         description: "Gestor de finanzas personales: cuentas, ingresos, gastos, deudas y metas de ahorro en un solo lugar.",
         tags: ["Next.js", "React", "TypeScript", "Node.js"],
         mainIcon: "Nextjs",
-        images: { desktop: "/finanzas-m.png" },
+        images: { desktop: "/projects/finanzas-maestras/desktop.webp", mobile: "/projects/finanzas-maestras/mobile.webp" },
         demoUrl: "https://finanzas-maestras.vercel.app/",
     },
     {
@@ -140,7 +143,7 @@ export const projects: Project[] = [
         tags: ["React", "Node.js"],
         mainIcon: "React",
         logoSrc: "/visualmind-logo.png",
-        images: { desktop: "/visualmind.png" },
+        images: { desktop: "/projects/visualmind/desktop.webp", mobile: "/projects/visualmind/mobile.webp" },
         demoUrl: "https://visualmind-one.vercel.app/",
     },
     {
@@ -150,6 +153,8 @@ export const projects: Project[] = [
         description: "App móvil para compras de supermercado: comparación de precios, despensa, listas compartidas y estimados de gasto.",
         tags: ["React Native", "Expo", "TypeScript", "SQLite", "Firebase", "Zustand"],
         mainIcon: "React",
+        images: { mobile: "/projects/merkando/mobile.webp" },
+        // TODO: agregar repoUrl cuando el repositorio de Merkando sea público.
         privateNote: "Repositorio privado",
     },
     {
@@ -159,7 +164,7 @@ export const projects: Project[] = [
         description: "Dashboard para gestionar postulaciones: puntúa cada vacante de 0 a 100 según encaje de stack y seniority.",
         tags: ["React", "Vite", "Node.js", "Express", "MongoDB"],
         mainIcon: "React",
-        // TODO: agregar repoUrl cuando el repositorio del Job Tracker esté en GitHub.
+        // TODO: agregar repoUrl y capturas (seed.js + scripts/screenshots.mjs) cuando el repositorio del Job Tracker esté en GitHub.
     },
 ];
 
