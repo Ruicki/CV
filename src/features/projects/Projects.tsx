@@ -97,13 +97,13 @@ function ProjectCard({ project, delay = 0 }: { project: Project; delay?: number 
                                 {project.title}
                             </h3>
                         </div>
-                        {project.metric && (
-                            <div className="text-right shrink-0">
-                                <div className="text-xl font-black text-accent leading-none">{project.metric.value}</div>
-                                <div className="text-[10px] text-muted-foreground font-medium max-w-[90px]">{project.metric.label}</div>
-                            </div>
-                        )}
                     </div>
+
+                    {project.metric && (
+                        <p className="text-sm text-muted-foreground">
+                            <span className="text-lg font-black text-accent">{project.metric.value}</span> {project.metric.label.toLowerCase()}
+                        </p>
+                    )}
 
                     <p className="text-sm text-muted-foreground leading-relaxed flex-1">{project.description}</p>
 
