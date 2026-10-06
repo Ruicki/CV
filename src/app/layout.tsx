@@ -16,13 +16,17 @@ const siteUrl =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000");
 
+// Textos cortos para la tarjeta al compartir: WhatsApp corta el título en ~40 caracteres.
+const shareTitle = `${personalInfo.name} | Desarrollador Junior`;
+const shareDescription = "Portafolio con proyectos reales en React, Node.js y Docker.";
+
 export const metadata: Metadata = {
   title: `${personalInfo.name} | ${personalInfo.title}`,
   description: personalInfo.heroTagline,
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: `${personalInfo.name} - ${personalInfo.title}`,
-    description: personalInfo.heroTagline,
+    title: shareTitle,
+    description: shareDescription,
     url: siteUrl,
     siteName: "RicardoPinzonDev",
     locale: "es_PA",
@@ -30,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${personalInfo.name} - ${personalInfo.title}`,
-    description: personalInfo.heroTagline,
+    title: shareTitle,
+    description: shareDescription,
   },
   icons: {
     icon: [
