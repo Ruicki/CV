@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Code2, ExternalLink, Github, Lock, Maximize2, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Code2, ExternalLink, Github, Lock, Maximize2, Pause, Play, X } from "lucide-react";
 import Image from "next/image";
 
 import { FadeIn, SlideUp } from "@/components/ui/motion";
@@ -237,10 +237,20 @@ function ProjectSlide({ project, onOpen }: { project: Project; onOpen: (index: n
 
 // ── Sección ───────────────────────────────────────────────────────────────────
 
+/** Tiempo que cada proyecto queda en pantalla antes de pasar al siguiente. */
+const AUTOPLAY_MS = 7000;
+
 export default function Projects() {
+    const sectionRef = useRef<HTMLElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const [current, setCurrent] = useState(0);
     const [lightbox, setLightbox] = useState<{ project: Project; index: number } | null>(null);
+    // Autoplay: el usuario puede detenerlo; también se pausa al pasar el mouse o tocar,
+    // fuera de pantalla, con la vista a pantalla completa abierta y con "reducir movimiento".
+    const [autoplay, setAutoplay] = useState(true);
+    const [hovering, setHovering] = useState(false);
+    const [inView, setInView] = useState(false);
+    const [reducedMotion, setReducedMotion] = useState(false);
 
     const goTo = useCallback((i: number) => {
         const track = trackRef.current;
@@ -248,6 +258,31 @@ export default function Projects() {
         if (!track || !slide) return;
         track.scrollTo({ left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2, behavior: "smooth" });
     }, []);
+
+    useEffect(() => {
+        const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const update = () => setReducedMotion(media.matches);
+        update();
+        media.addEventListener("change", update);
+        return () => media.removeEventListener("change", update);
+    }, []);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.3 });
+        observer.observe(section);
+        return () => observer.disconnect();
+    }, []);
+
+    const playing = autoplay && !hovering && inView && !lightbox && !reducedMotion;
+
+    // Cada cambio de diapositiva (automático o manual) reinicia la cuenta.
+    useEffect(() => {
+        if (!playing) return;
+        const timer = setTimeout(() => goTo((current + 1) % projects.length), AUTOPLAY_MS);
+        return () => clearTimeout(timer);
+    }, [playing, current, goTo]);
 
     // Diapositiva activa = la más cercana al centro del carrusel.
     const onScroll = useCallback(() => {
@@ -265,7 +300,7 @@ export default function Projects() {
     }, []);
 
     return (
-        <section id="projects" className="py-24 relative overflow-hidden flex flex-col items-center justify-center scroll-mt-24">
+        <section ref={sectionRef} id="projects" className="py-24 relative overflow-hidden flex flex-col items-center justify-center scroll-mt-24">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(#c9a84c1a_1px,transparent_1px)] bg-size-[32px_32px]"></div>
 
             <div className="container px-4 md:px-8">
@@ -294,6 +329,12 @@ export default function Projects() {
                     <div
                         ref={trackRef}
                         onScroll={onScroll}
+                        onMouseEnter={() => setHovering(true)}
+                        onMouseLeave={() => setHovering(false)}
+                        onTouchStart={() => setHovering(true)}
+                        onTouchEnd={() => setHovering(false)}
+                        onFocus={() => setHovering(true)}
+                        onBlur={() => setHovering(false)}
                         className="relative flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                         aria-roledescription="carrusel"
                         aria-label="Proyectos"
@@ -324,12 +365,29 @@ export default function Projects() {
                                 onClick={() => goTo(i)}
                                 aria-label={`Ir a ${project.title}`}
                                 aria-current={i === current}
-                                className={cn("h-2.5 rounded-full transition-all", i === current ? "w-8 bg-primary" : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60")}
-                            />
+                                className={cn("relative h-2.5 rounded-full overflow-hidden transition-all", i === current ? "w-8 bg-primary/30" : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60")}
+                            >
+                                {/* El punto activo se llena mientras corre el tiempo de la diapositiva */}
+                                {i === current && (
+                                    <span
+                                        key={`${current}-${playing}`}
+                                        className="absolute inset-y-0 left-0 bg-primary rounded-full"
+                                        style={playing ? { animation: `carousel-progress ${AUTOPLAY_MS}ms linear forwards` } : { width: "100%" }}
+                                    />
+                                )}
+                            </button>
                         ))}
                     </div>
                     <button type="button" className={cn(arrowClass, "sm:hidden")} onClick={() => goTo(current + 1)} disabled={current === projects.length - 1} aria-label="Proyecto siguiente">
                         <ChevronRight className="h-5 w-5" />
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setAutoplay((v) => !v)}
+                        className="h-8 w-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+                        aria-label={autoplay ? "Pausar el carrusel" : "Reanudar el carrusel"}
+                    >
+                        {autoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
                     </button>
                 </div>
             </div>
