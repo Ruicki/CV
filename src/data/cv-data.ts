@@ -122,8 +122,12 @@ export const projects: Project[] = [
         tags: ["React", "Node.js", "Express", "MongoDB", "PDFKit", "Nodemailer", "Docker"],
         mainIcon: "Node",
         metric: { value: "91 %", label: "Menos tiempo por informe" },
-        // TODO: captura con datos ficticios. Necesita MongoDB (no disponible al generar las demás):
-        // levantar con `docker compose up` y correr scripts/screenshots.mjs gestor-informes=http://localhost:<puerto>
+        // Capturas con datos ficticios (nombres, correos y números de caso inventados).
+        screenshots: [
+            { src: "/projects/gestor-informes/admin.webp", kind: "desktop", label: "Administración" },
+            { src: "/projects/gestor-informes/informes.webp", kind: "desktop", label: "Informes" },
+            { src: "/projects/gestor-informes/clientes.webp", kind: "desktop", label: "Clientes" },
+        ],
         privateNote: "Código privado",
     },
     {
@@ -132,7 +136,10 @@ export const projects: Project[] = [
         description: "Sistema de control de acceso y registro de visitantes que funciona 100 % sin conexión en una mini PC. Incluye acceso remoto seguro mediante Tailscale, un módulo de auditoría y un panel administrativo protegido con PIN cifrado.",
         tags: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Docker", "Docker Compose"],
         mainIcon: "React",
-        images: { desktop: "/projects/sca/desktop.webp", mobile: "/projects/sca/mobile.webp" },
+        screenshots: [
+            { src: "/projects/sca/desktop.webp", kind: "desktop", label: "Escritorio" },
+            { src: "/projects/sca/mobile.webp", kind: "mobile", label: "Móvil" },
+        ],
         privateNote: "Código privado",
     },
     {
@@ -141,7 +148,10 @@ export const projects: Project[] = [
         description: "Gestor de finanzas personales: cuentas, ingresos, gastos, deudas y metas de ahorro en un solo lugar.",
         tags: ["Next.js", "React", "TypeScript", "Node.js"],
         mainIcon: "Nextjs",
-        images: { desktop: "/projects/finanzas-maestras/desktop.webp", mobile: "/projects/finanzas-maestras/mobile.webp" },
+        screenshots: [
+            { src: "/projects/finanzas-maestras/desktop.webp", kind: "desktop", label: "Escritorio" },
+            { src: "/projects/finanzas-maestras/mobile.webp", kind: "mobile", label: "Móvil" },
+        ],
         demoUrl: "https://finanzas-maestras.vercel.app/",
     },
     {
@@ -151,7 +161,10 @@ export const projects: Project[] = [
         tags: ["React", "Node.js"],
         mainIcon: "React",
         logoSrc: "/visualmind-logo.png",
-        images: { desktop: "/projects/visualmind/desktop.webp", mobile: "/projects/visualmind/mobile.webp" },
+        screenshots: [
+            { src: "/projects/visualmind/desktop.webp", kind: "desktop", label: "Escritorio" },
+            { src: "/projects/visualmind/mobile.webp", kind: "mobile", label: "Móvil" },
+        ],
         demoUrl: "https://visualmind-one.vercel.app/",
     },
     {
@@ -160,7 +173,9 @@ export const projects: Project[] = [
         description: "App móvil para compras de supermercado: comparación de precios, despensa, listas compartidas y estimados de gasto.",
         tags: ["React Native", "Expo", "TypeScript", "SQLite", "Firebase", "Zustand"],
         mainIcon: "React",
-        images: { mobile: "/projects/merkando/mobile.webp" },
+        screenshots: [
+            { src: "/projects/merkando/mobile.webp", kind: "mobile", label: "Móvil" },
+        ],
         // TODO: agregar repoUrl cuando el repositorio de Merkando sea público.
         privateNote: "Repositorio privado",
     },

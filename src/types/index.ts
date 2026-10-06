@@ -3,9 +3,11 @@ export interface ProjectMetric {
     label: string;
 }
 
-export interface ProjectImages {
-    desktop?: string;
-    mobile?: string;
+export interface ProjectScreenshot {
+    src: string;
+    /** "desktop" se muestra a lo ancho; "mobile" dentro de un marco de teléfono. */
+    kind: "desktop" | "mobile";
+    label?: string;
 }
 
 export interface Project {
@@ -15,7 +17,7 @@ export interface Project {
     tags: string[];
     mainIcon: string;
     logoSrc?: string;
-    images?: ProjectImages;
+    screenshots?: ProjectScreenshot[];
     metric?: ProjectMetric;
     demoUrl?: string;
     repoUrl?: string;
