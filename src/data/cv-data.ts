@@ -164,14 +164,6 @@ export const projects: Project[] = [
         // TODO: agregar repoUrl cuando el repositorio de Merkando sea público.
         privateNote: "Repositorio privado",
     },
-    {
-        slug: "job-tracker",
-        title: "Job Tracker",
-        description: "Panel para gestionar postulaciones que puntúa cada vacante de 0 a 100 según su encaje con mi stack y mi nivel de experiencia.",
-        tags: ["React", "Vite", "Node.js", "Express", "MongoDB"],
-        mainIcon: "React",
-        // TODO: agregar repoUrl y capturas (seed.js + scripts/screenshots.mjs) cuando el repositorio del Job Tracker esté en GitHub.
-    },
 ];
 
 export const skillCategories: { id: SkillCategory; label: string }[] = [
