@@ -17,7 +17,7 @@ const siteUrl =
     : "http://localhost:3000");
 
 export const metadata: Metadata = {
-  title: "RicardoPinzonDev",
+  title: `${personalInfo.name} | ${personalInfo.title}`,
   description: personalInfo.heroTagline,
   metadataBase: new URL(siteUrl),
   openGraph: {
