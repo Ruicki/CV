@@ -131,3 +131,8 @@
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
   }
 }
+/* Barra de progreso del punto activo del carrusel de proyectos */
+@keyframes carousel-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
