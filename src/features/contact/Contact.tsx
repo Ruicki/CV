@@ -59,7 +59,7 @@ export default function Contact() {
                         <div className="space-y-4">
                             <FadeIn>
                                 <SectionTitle>
-                                    ¡Construyamos algo <br /><span className="text-gradient">increíble</span> juntos!
+                                    Construyamos algo <br /><span className="text-gradient">increíble</span> juntos
                                 </SectionTitle>
                             </FadeIn>
                             <SlideUp delay={0.2}>
