@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Code2, ExternalLink, Github, Lock, Maximize2, Pause, Play, X } from "lucide-react";
 import Image from "next/image";
 
@@ -27,16 +28,21 @@ const linkClass =
     "w-fit inline-flex flex-row items-center gap-2 h-9 px-5 rounded-full text-xs font-bold border border-primary/50 bg-transparent text-primary hover:bg-primary/10 transition-all duration-300";
 
 const arrowClass =
-    "h-11 w-11 rounded-full glass border border-border/60 flex items-center justify-center text-foreground hover:border-primary/50 hover:text-primary transition-colors disabled:opacity-30 disabled:pointer-events-none";
+    "h-11 w-11 rounded-full glass border border-border/60 flex items-center justify-center text-foreground hover:border-primary/50 hover:text-primary transition-colors";
 
-// ── Galería de capturas de un proyecto ────────────────────────────────────────
+/** Tiempo que cada proyecto queda en pantalla antes de pasar al siguiente. */
+const AUTOPLAY_MS = 7000;
 
-function ScreenshotFrame({ shot, title, sizes }: { shot: ProjectScreenshot; title: string; sizes: string }) {
+const pad = (n: number) => String(n).padStart(2, "0");
+
+// ── Captura dentro del escenario ──────────────────────────────────────────────
+
+function ScreenshotFrame({ shot, title }: { shot: ProjectScreenshot; title: string }) {
     const alt = `Captura de ${title}${shot.label ? ` (${shot.label})` : ""}`;
 
     if (shot.kind === "mobile") {
         return (
-            <div className="relative h-full aspect-[390/800] rounded-[1.6rem] overflow-hidden border-[5px] border-foreground/15 bg-black shadow-2xl">
+            <div className="relative h-full aspect-[390/800] rounded-[1.8rem] overflow-hidden border-[6px] border-black/70 bg-black shadow-2xl">
                 <Image src={shot.src} alt={alt} fill sizes="320px" className="object-cover object-top" />
             </div>
         );
@@ -44,41 +50,50 @@ function ScreenshotFrame({ shot, title, sizes }: { shot: ProjectScreenshot; titl
 
     return (
         <div className="relative w-full h-full">
-            <Image src={shot.src} alt={alt} fill sizes={sizes} className="object-contain drop-shadow-2xl" />
+            <Image src={shot.src} alt={alt} fill sizes="(min-width: 1024px) 60vw, 95vw" className="object-contain drop-shadow-2xl" priority={false} />
         </div>
     );
 }
 
-function ProjectGallery({ project, onOpen }: { project: Project; onOpen: (index: number) => void }) {
+/** Lado visual del escenario: captura grande + selector de vistas. */
+function StageMedia({ project, onOpen, wasDragged }: {
+    project: Project;
+    onOpen: (index: number) => void;
+    wasDragged: () => boolean;
+}) {
     const shots = project.screenshots ?? [];
     const [active, setActive] = useState(0);
     const shot = shots[active];
 
     return (
-        <div className="flex flex-col gap-3">
-            <div className="relative h-[300px] sm:h-[380px] lg:h-[440px] rounded-2xl bg-linear-to-br from-primary/10 via-background to-accent/10 border border-border/40 overflow-hidden">
-                {shot ? (
-                    <button
-                        type="button"
-                        onClick={() => onOpen(active)}
-                        className="group/shot absolute inset-0 flex items-center justify-center p-4 sm:p-6 cursor-zoom-in"
-                        aria-label={`Ver captura de ${project.title} en pantalla completa`}
-                    >
-                        <ScreenshotFrame shot={shot} title={project.title} sizes="(min-width: 1024px) 55vw, 90vw" />
-                        <span className="absolute top-3 right-3 h-9 w-9 rounded-full bg-background/70 backdrop-blur flex items-center justify-center text-foreground opacity-80 group-hover/shot:opacity-100 transition-opacity">
-                            <Maximize2 className="h-4 w-4" />
-                        </span>
-                    </button>
-                ) : (
-                    // Sin captura todavía: panel neutro con el icono del proyecto.
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <ProjectIcon name={project.mainIcon} className="h-16 w-16 opacity-40" />
-                    </div>
-                )}
-            </div>
+        <div
+            className="relative h-[300px] sm:h-[400px] lg:h-full lg:min-h-[500px] overflow-hidden"
+            style={{ background: `radial-gradient(circle at 50% 45%, ${project.accent}55 0%, ${project.accent}14 45%, transparent 75%)` }}
+        >
+            {shot ? (
+                <button
+                    type="button"
+                    onClick={() => { if (!wasDragged()) onOpen(active); }}
+                    className="group/shot absolute inset-0 flex items-center justify-center px-4 pt-4 pb-14 sm:px-8 sm:pt-8 cursor-zoom-in"
+                    aria-label={`Ver captura de ${project.title} en pantalla completa`}
+                >
+                    <ScreenshotFrame shot={shot} title={project.title} />
+                    <span className="absolute top-3 right-3 h-9 w-9 rounded-full bg-background/70 backdrop-blur flex items-center justify-center text-foreground opacity-70 group-hover/shot:opacity-100 transition-opacity">
+                        <Maximize2 className="h-4 w-4" />
+                    </span>
+                </button>
+            ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <ProjectIcon name={project.mainIcon} className="h-20 w-20 opacity-40" />
+                </div>
+            )}
 
             {shots.length > 1 && (
-                <div className="flex flex-wrap gap-2" role="tablist" aria-label={`Capturas de ${project.title}`}>
+                <div
+                    className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 p-1 rounded-full bg-background/70 backdrop-blur border border-border/50 max-w-[calc(100%-1.5rem)] overflow-x-auto [scrollbar-width:none]"
+                    role="tablist"
+                    aria-label={`Capturas de ${project.title}`}
+                >
                     {shots.map((s, i) => (
                         <button
                             key={s.src}
@@ -87,10 +102,8 @@ function ProjectGallery({ project, onOpen }: { project: Project; onOpen: (index:
                             aria-selected={i === active}
                             onClick={() => setActive(i)}
                             className={cn(
-                                "px-3 py-1.5 rounded-full text-xs font-bold border transition-colors",
-                                i === active
-                                    ? "bg-primary text-primary-foreground border-primary"
-                                    : "border-border/60 text-muted-foreground hover:text-foreground hover:border-primary/40"
+                                "px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap transition-colors",
+                                i === active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                             )}
                         >
                             {s.label ?? `Vista ${i + 1}`}
@@ -176,74 +189,75 @@ function Lightbox({ project, index, onClose, onIndex }: {
     );
 }
 
-// ── Diapositiva de un proyecto ────────────────────────────────────────────────
+// ── Información del proyecto ──────────────────────────────────────────────────
 
-function ProjectSlide({ project, onOpen }: { project: Project; onOpen: (index: number) => void }) {
+function StageInfo({ project, index }: { project: Project; index: number }) {
     return (
-        <article className="h-full rounded-3xl glass border border-border/50 p-4 sm:p-6 grid gap-6 lg:grid-cols-[3fr_2fr] lg:items-center">
-            <ProjectGallery project={project} onOpen={onOpen} />
+        <div className="flex flex-col justify-center gap-4 p-6 sm:p-8 lg:p-10">
+            <p className="text-sm font-black tracking-widest text-muted-foreground">
+                <span style={{ color: project.accent }}>{pad(index + 1)}</span> / {pad(projects.length)}
+            </p>
 
-            <div className="flex flex-col gap-4 px-1">
-                <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
-                        {project.logoSrc ? (
-                            <Image src={project.logoSrc} alt="" width={48} height={48} className="w-full h-full object-contain" />
-                        ) : (
-                            <ProjectIcon name={project.mainIcon} className="h-6 w-6" />
-                        )}
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-bold tracking-tight text-foreground">{project.title}</h3>
+            <div className="flex items-center gap-3">
+                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 overflow-hidden">
+                    {project.logoSrc ? (
+                        <Image src={project.logoSrc} alt="" width={48} height={48} className="w-full h-full object-contain" />
+                    ) : (
+                        <ProjectIcon name={project.mainIcon} className="h-6 w-6" />
+                    )}
                 </div>
-
-                {project.metric && (
-                    <p className="text-sm text-muted-foreground">
-                        <span className="text-2xl font-black text-accent">{project.metric.value}</span> {project.metric.label.toLowerCase()}
-                    </p>
-                )}
-
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{project.description}</p>
-
-                <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map(tag => (
-                        <Badge key={tag} className="bg-primary/5 text-primary border border-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-                            {tag}
-                        </Badge>
-                    ))}
-                </div>
-
-                {(project.demoUrl || project.repoUrl || project.privateNote) && (
-                    <div className="flex flex-wrap items-center gap-2 pt-1">
-                        {project.demoUrl && (
-                            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                                <ExternalLink className="h-3.5 w-3.5 shrink-0" /> Sitio Web
-                            </a>
-                        )}
-                        {project.repoUrl && (
-                            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                                <Github className="h-3.5 w-3.5 shrink-0" /> Código
-                            </a>
-                        )}
-                        {project.privateNote && (
-                            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-                                <Lock className="h-3.5 w-3.5 shrink-0" /> {project.privateNote}
-                            </span>
-                        )}
-                    </div>
-                )}
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">{project.title}</h3>
             </div>
-        </article>
+
+            {project.metric && (
+                <p className="text-sm text-muted-foreground">
+                    <span className="text-3xl font-black" style={{ color: project.accent }}>{project.metric.value}</span>{" "}
+                    {project.metric.label.toLowerCase()}
+                </p>
+            )}
+
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">{project.description}</p>
+
+            <div className="flex flex-wrap gap-1.5">
+                {project.tags.map(tag => (
+                    <Badge key={tag} className="bg-primary/5 text-primary border border-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                        {tag}
+                    </Badge>
+                ))}
+            </div>
+
+            {(project.demoUrl || project.repoUrl || project.privateNote) && (
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                    {project.demoUrl && (
+                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                            <ExternalLink className="h-3.5 w-3.5 shrink-0" /> Sitio Web
+                        </a>
+                    )}
+                    {project.repoUrl && (
+                        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                            <Github className="h-3.5 w-3.5 shrink-0" /> Código
+                        </a>
+                    )}
+                    {project.privateNote && (
+                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+                            <Lock className="h-3.5 w-3.5 shrink-0" /> {project.privateNote}
+                        </span>
+                    )}
+                </div>
+            )}
+        </div>
     );
 }
 
 // ── Sección ───────────────────────────────────────────────────────────────────
 
-/** Tiempo que cada proyecto queda en pantalla antes de pasar al siguiente. */
-const AUTOPLAY_MS = 7000;
-
 export default function Projects() {
     const sectionRef = useRef<HTMLElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
+    const railRef = useRef<HTMLDivElement>(null);
+    const draggedRef = useRef(false);
+    const swipeStartX = useRef<number | null>(null);
     const [current, setCurrent] = useState(0);
+    const [direction, setDirection] = useState(1);
     const [lightbox, setLightbox] = useState<{ project: Project; index: number } | null>(null);
     // Autoplay: el usuario puede detenerlo; también se pausa al pasar el mouse o tocar,
     // fuera de pantalla, con la vista a pantalla completa abierta y con "reducir movimiento".
@@ -252,12 +266,14 @@ export default function Projects() {
     const [inView, setInView] = useState(false);
     const [reducedMotion, setReducedMotion] = useState(false);
 
+    const project = projects[current];
+
     const goTo = useCallback((i: number) => {
-        const track = trackRef.current;
-        const slide = track?.children[i] as HTMLElement | undefined;
-        if (!track || !slide) return;
-        track.scrollTo({ left: slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2, behavior: "smooth" });
-    }, []);
+        const next = (i + projects.length) % projects.length;
+        // Avanzar (o pasar del último al primero) entra desde la derecha; retroceder, desde la izquierda.
+        setDirection(next > current || (current === projects.length - 1 && next === 0) ? 1 : -1);
+        setCurrent(next);
+    }, [current]);
 
     useEffect(() => {
         const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -277,34 +293,44 @@ export default function Projects() {
 
     const playing = autoplay && !hovering && inView && !lightbox && !reducedMotion;
 
-    // Cada cambio de diapositiva (automático o manual) reinicia la cuenta.
+    // Cada cambio de proyecto (automático o manual) reinicia la cuenta.
     useEffect(() => {
         if (!playing) return;
-        const timer = setTimeout(() => goTo((current + 1) % projects.length), AUTOPLAY_MS);
+        const timer = setTimeout(() => goTo(current + 1), AUTOPLAY_MS);
         return () => clearTimeout(timer);
     }, [playing, current, goTo]);
 
-    // Diapositiva activa = la más cercana al centro del carrusel.
-    const onScroll = useCallback(() => {
-        const track = trackRef.current;
-        if (!track) return;
-        const center = track.scrollLeft + track.clientWidth / 2;
-        let best = 0;
-        let bestDistance = Infinity;
-        Array.from(track.children).forEach((child, i) => {
-            const el = child as HTMLElement;
-            const distance = Math.abs(el.offsetLeft + el.clientWidth / 2 - center);
-            if (distance < bestDistance) { bestDistance = distance; best = i; }
-        });
-        setCurrent(best);
-    }, []);
+    // En móvil, mantener visible la miniatura activa dentro de la fila.
+    useEffect(() => {
+        const rail = railRef.current;
+        const thumb = rail?.children[current] as HTMLElement | undefined;
+        if (!rail || !thumb || rail.scrollWidth <= rail.clientWidth) return;
+        rail.scrollTo({ left: thumb.offsetLeft - (rail.clientWidth - thumb.clientWidth) / 2, behavior: "smooth" });
+    }, [current]);
+
+    // Deslizar con el dedo o el mouse: más de 60 px cambia de proyecto.
+    // Un deslizamiento no debe abrir la captura a pantalla completa (draggedRef).
+    const onPointerDown = (e: React.PointerEvent) => {
+        swipeStartX.current = e.clientX;
+        draggedRef.current = false;
+    };
+    const onPointerMove = (e: React.PointerEvent) => {
+        if (swipeStartX.current !== null && Math.abs(e.clientX - swipeStartX.current) > 10) draggedRef.current = true;
+    };
+    const onPointerUp = (e: React.PointerEvent) => {
+        if (swipeStartX.current === null) return;
+        const dx = e.clientX - swipeStartX.current;
+        swipeStartX.current = null;
+        if (dx < -60) goTo(current + 1);
+        else if (dx > 60) goTo(current - 1);
+    };
 
     return (
         <section ref={sectionRef} id="projects" className="py-24 relative overflow-hidden flex flex-col items-center justify-center scroll-mt-24">
             <div className="absolute inset-0 -z-10 bg-[radial-gradient(#c9a84c1a_1px,transparent_1px)] bg-size-[32px_32px]"></div>
 
             <div className="container px-4 md:px-8">
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
                     <div className="space-y-4">
                         <FadeIn>
                             <SectionTitle>Proyectos</SectionTitle>
@@ -315,80 +341,109 @@ export default function Projects() {
                             </p>
                         </SlideUp>
                     </div>
-                    <div className="hidden sm:flex gap-2 shrink-0">
-                        <button type="button" className={arrowClass} onClick={() => goTo(current - 1)} disabled={current === 0} aria-label="Proyecto anterior">
+                    <div className="flex items-center gap-2 shrink-0">
+                        <button
+                            type="button"
+                            onClick={() => setAutoplay((v) => !v)}
+                            className="h-11 w-11 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+                            aria-label={autoplay ? "Pausar el carrusel" : "Reanudar el carrusel"}
+                        >
+                            {autoplay ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+                        </button>
+                        <button type="button" className={arrowClass} onClick={() => goTo(current - 1)} aria-label="Proyecto anterior">
                             <ChevronLeft className="h-5 w-5" />
                         </button>
-                        <button type="button" className={arrowClass} onClick={() => goTo(current + 1)} disabled={current === projects.length - 1} aria-label="Proyecto siguiente">
+                        <button type="button" className={arrowClass} onClick={() => goTo(current + 1)} aria-label="Proyecto siguiente">
                             <ChevronRight className="h-5 w-5" />
                         </button>
                     </div>
                 </div>
 
+                {/* Escenario: un proyecto a la vez */}
                 <SlideUp delay={0.1}>
                     <div
-                        ref={trackRef}
-                        onScroll={onScroll}
+                        className="relative rounded-3xl glass border border-border/50 overflow-hidden"
                         onMouseEnter={() => setHovering(true)}
                         onMouseLeave={() => setHovering(false)}
                         onTouchStart={() => setHovering(true)}
                         onTouchEnd={() => setHovering(false)}
-                        onFocus={() => setHovering(true)}
-                        onBlur={() => setHovering(false)}
-                        className="relative flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        onPointerDown={onPointerDown}
+                        onPointerMove={onPointerMove}
+                        onPointerUp={onPointerUp}
+                        onPointerCancel={() => { swipeStartX.current = null; }}
+                        onDragStart={(e) => e.preventDefault()}
                         aria-roledescription="carrusel"
                         aria-label="Proyectos"
+                        aria-live={playing ? "off" : "polite"}
                     >
-                        {projects.map((project, i) => (
-                            <div
+                        <AnimatePresence mode="wait" initial={false} custom={direction}>
+                            <motion.article
                                 key={project.slug}
-                                className="snap-center shrink-0 w-[92%] sm:w-[85%] lg:w-[90%]"
+                                custom={direction}
+                                initial={{ opacity: 0, x: reducedMotion ? 0 : direction * 60 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: reducedMotion ? 0 : direction * -60 }}
+                                transition={{ duration: 0.35, ease: "easeOut" }}
+                                className="grid lg:grid-cols-[1.35fr_1fr] lg:min-h-[500px] touch-pan-y select-none"
                                 aria-roledescription="diapositiva"
-                                aria-label={`${i + 1} de ${projects.length}: ${project.title}`}
+                                aria-label={`${current + 1} de ${projects.length}: ${project.title}`}
                             >
-                                <ProjectSlide project={project} onOpen={(index) => setLightbox({ project, index })} />
-                            </div>
-                        ))}
+                                <StageMedia
+                                    project={project}
+                                    onOpen={(index) => setLightbox({ project, index })}
+                                    wasDragged={() => draggedRef.current}
+                                />
+                                <StageInfo project={project} index={current} />
+                            </motion.article>
+                        </AnimatePresence>
                     </div>
                 </SlideUp>
 
-                {/* Puntos de navegación + flechas en móvil */}
-                <div className="mt-6 flex items-center justify-center gap-4">
-                    <button type="button" className={cn(arrowClass, "sm:hidden")} onClick={() => goTo(current - 1)} disabled={current === 0} aria-label="Proyecto anterior">
-                        <ChevronLeft className="h-5 w-5" />
-                    </button>
-                    <div className="flex items-center gap-2">
-                        {projects.map((project, i) => (
+                {/* Fila de miniaturas: navegación + progreso del autoplay */}
+                <div
+                    ref={railRef}
+                    className="mt-5 flex lg:grid lg:grid-cols-5 gap-3 overflow-x-auto snap-x pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
+                    {projects.map((p, i) => {
+                        const thumb = p.screenshots?.[0];
+                        const isActive = i === current;
+                        return (
                             <button
-                                key={project.slug}
+                                key={p.slug}
                                 type="button"
                                 onClick={() => goTo(i)}
-                                aria-label={`Ir a ${project.title}`}
-                                aria-current={i === current}
-                                className={cn("relative h-2.5 rounded-full overflow-hidden transition-all", i === current ? "w-8 bg-primary/30" : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60")}
-                            >
-                                {/* El punto activo se llena mientras corre el tiempo de la diapositiva */}
-                                {i === current && (
-                                    <span
-                                        key={`${current}-${playing}`}
-                                        className="absolute inset-y-0 left-0 bg-primary rounded-full"
-                                        style={playing ? { animation: `carousel-progress ${AUTOPLAY_MS}ms linear forwards` } : { width: "100%" }}
-                                    />
+                                aria-label={`Ir a ${p.title}`}
+                                aria-current={isActive}
+                                className={cn(
+                                    "snap-start shrink-0 w-[150px] lg:w-auto text-left rounded-2xl border p-2 transition-all",
+                                    isActive ? "border-primary/40 bg-primary/5" : "border-border/40 opacity-60 hover:opacity-100"
                                 )}
+                            >
+                                <div className="relative h-16 rounded-xl overflow-hidden" style={{ background: `${p.accent}22` }}>
+                                    {thumb ? (
+                                        <Image src={thumb.src} alt="" fill sizes="200px" className={cn("object-cover", thumb.kind === "mobile" ? "object-top" : "object-center")} />
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <ProjectIcon name={p.mainIcon} className="h-6 w-6 opacity-50" />
+                                        </div>
+                                    )}
+                                </div>
+                                <p className="mt-2 text-xs font-bold text-foreground truncate">{p.title}</p>
+                                <div className="mt-2 h-1 rounded-full bg-muted-foreground/20 overflow-hidden">
+                                    {isActive && (
+                                        <span
+                                            key={`${current}-${playing}`}
+                                            className="block h-full rounded-full"
+                                            style={{
+                                                background: p.accent,
+                                                ...(playing ? { animation: `carousel-progress ${AUTOPLAY_MS}ms linear forwards` } : { width: "100%" }),
+                                            }}
+                                        />
+                                    )}
+                                </div>
                             </button>
-                        ))}
-                    </div>
-                    <button type="button" className={cn(arrowClass, "sm:hidden")} onClick={() => goTo(current + 1)} disabled={current === projects.length - 1} aria-label="Proyecto siguiente">
-                        <ChevronRight className="h-5 w-5" />
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setAutoplay((v) => !v)}
-                        className="h-8 w-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
-                        aria-label={autoplay ? "Pausar el carrusel" : "Reanudar el carrusel"}
-                    >
-                        {autoplay ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5" />}
-                    </button>
+                        );
+                    })}
                 </div>
             </div>
 

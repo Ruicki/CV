@@ -16,6 +16,8 @@ export interface Project {
     description: string;
     tags: string[];
     mainIcon: string;
+    /** Color de acento del proyecto (fondo del escenario del carrusel). */
+    accent: string;
     logoSrc?: string;
     screenshots?: ProjectScreenshot[];
     metric?: ProjectMetric;

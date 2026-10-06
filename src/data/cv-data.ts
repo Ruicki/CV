@@ -121,6 +121,7 @@ export const projects: Project[] = [
         description: "SaaS que automatiza la elaboración de informes periciales: reduce el tiempo de cada informe de 2 h a 10 min (91 % menos), genera el PDF y envía notificaciones automáticas.",
         tags: ["React", "Node.js", "Express", "MongoDB", "PDFKit", "Nodemailer", "Docker"],
         mainIcon: "Node",
+        accent: "#14b8a6",
         metric: { value: "91 %", label: "Menos tiempo por informe" },
         // Capturas con datos ficticios (nombres, correos y números de caso inventados).
         screenshots: [
@@ -136,6 +137,7 @@ export const projects: Project[] = [
         description: "Sistema de control de acceso y registro de visitantes que funciona 100 % sin conexión en una mini PC. Incluye acceso remoto seguro mediante Tailscale, un módulo de auditoría y un panel administrativo protegido con PIN cifrado.",
         tags: ["React", "TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Docker", "Docker Compose"],
         mainIcon: "React",
+        accent: "#6366f1",
         screenshots: [
             { src: "/projects/sca/desktop.webp", kind: "desktop", label: "Escritorio" },
             { src: "/projects/sca/mobile.webp", kind: "mobile", label: "Móvil" },
@@ -148,6 +150,7 @@ export const projects: Project[] = [
         description: "Gestor de finanzas personales: cuentas, ingresos, gastos, deudas y metas de ahorro en un solo lugar.",
         tags: ["Next.js", "React", "TypeScript", "Node.js"],
         mainIcon: "Nextjs",
+        accent: "#22c55e",
         screenshots: [
             { src: "/projects/finanzas-maestras/desktop.webp", kind: "desktop", label: "Escritorio" },
             { src: "/projects/finanzas-maestras/mobile.webp", kind: "mobile", label: "Móvil" },
@@ -160,6 +163,7 @@ export const projects: Project[] = [
         description: "Plataforma de ventas (e-commerce) full-stack con panel administrativo.",
         tags: ["React", "Node.js"],
         mainIcon: "React",
+        accent: "#f59e0b",
         logoSrc: "/visualmind-logo.png",
         screenshots: [
             { src: "/projects/visualmind/desktop.webp", kind: "desktop", label: "Escritorio" },
@@ -173,8 +177,11 @@ export const projects: Project[] = [
         description: "App móvil para compras de supermercado: comparación de precios, despensa, listas compartidas y estimados de gasto.",
         tags: ["React Native", "Expo", "TypeScript", "SQLite", "Firebase", "Zustand"],
         mainIcon: "React",
+        accent: "#3b82f6",
         screenshots: [
-            { src: "/projects/merkando/mobile.webp", kind: "mobile", label: "Móvil" },
+            { src: "/projects/merkando/vista-general.webp", kind: "desktop", label: "Vista general" },
+            { src: "/projects/merkando/funciones.webp", kind: "desktop", label: "Funciones" },
+            { src: "/projects/merkando/mobile.webp", kind: "mobile", label: "Inicio" },
         ],
         // TODO: agregar repoUrl cuando el repositorio de Merkando sea público.
         privateNote: "Repositorio privado",
