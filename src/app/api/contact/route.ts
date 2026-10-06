@@ -2,15 +2,78 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
 import { escapeHtml } from "@/lib/escape-html";
+import { isRateLimited } from "@/lib/rate-limit";
 
 // Límites para que nadie use el formulario para mandar textos enormes.
 const MAX_NAME = 100;
 const MAX_EMAIL = 254;
 const MAX_MESSAGE = 5000;
 
+// Protección contra robots.
+const RATE_LIMIT = 5; // envíos por IP...
+const RATE_WINDOW_MS = 10 * 60 * 1000; // ...cada 10 minutos
+const MIN_FILL_MS = 2500; // un humano tarda más que esto en llenar el formulario
+const MAX_FORM_AGE_MS = 24 * 60 * 60 * 1000;
+
+/** Verifica el captcha de Cloudflare Turnstile (solo si hay clave secreta configurada). */
+async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret: process.env.TURNSTILE_SECRET_KEY ?? "", response: token, remoteip: ip }),
+    });
+    const data = await res.json();
+    return data?.success === true;
+  } catch {
+    return false;
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "desconocida";
+    if (isRateLimited(`contacto:${ip}`, RATE_LIMIT, RATE_WINDOW_MS)) {
+      return NextResponse.json(
+        { error: "Has enviado varios mensajes seguidos. Intenta de nuevo en unos minutos." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
+
+    // Campo trampa: las personas no lo ven, los robots lo llenan. Se responde "éxito" para no darles pistas.
+    if (typeof body?.website === "string" && body.website.trim() !== "") {
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
+
+    // Tiempo mínimo: el formulario manda cuándo se abrió la página.
+    const openedAt = Number(body?.t);
+    const elapsed = Date.now() - openedAt;
+    if (!Number.isFinite(openedAt) || elapsed < 0 || elapsed > MAX_FORM_AGE_MS) {
+      return NextResponse.json(
+        { error: "No se pudo validar el envío. Recarga la página e intenta de nuevo." },
+        { status: 400 }
+      );
+    }
+    if (elapsed < MIN_FILL_MS) {
+      return NextResponse.json(
+        { error: "Espera unos segundos e intenta de nuevo." },
+        { status: 400 }
+      );
+    }
+
+    // Captcha opcional: se exige solo si configuraste TURNSTILE_SECRET_KEY.
+    if (process.env.TURNSTILE_SECRET_KEY) {
+      const token = typeof body?.turnstileToken === "string" ? body.turnstileToken : "";
+      if (!token || !(await verifyTurnstile(token, ip))) {
+        return NextResponse.json(
+          { error: "No se pudo verificar que eres una persona. Intenta de nuevo." },
+          { status: 400 }
+        );
+      }
+    }
+
     const name = typeof body?.name === "string" ? body.name.trim() : "";
     const email = typeof body?.email === "string" ? body.email.trim() : "";
     const message = typeof body?.message === "string" ? body.message.trim() : "";

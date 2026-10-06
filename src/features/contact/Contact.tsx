@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
 import { buttonVariants } from "@/components/ui/button";
 import { Mail, Github, Linkedin, MessageSquare, Phone, MapPin, Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { FadeIn, SlideUp } from "@/components/ui/motion";
@@ -11,12 +12,29 @@ import { cn } from "@/lib/utils";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
+// Captcha opcional (Cloudflare Turnstile): solo aparece si defines NEXT_PUBLIC_TURNSTILE_SITE_KEY.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+declare global {
+    interface Window {
+        turnstile?: { reset: () => void };
+    }
+}
+
 export default function Contact() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
     const [formState, setFormState] = useState<FormState>("idle");
     const [errorMsg, setErrorMsg] = useState("");
+    // Protección contra robots: campo trampa invisible y momento en que se abrió el formulario.
+    const [website, setWebsite] = useState("");
+    const openedAt = useRef(0);
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useEffect(() => {
+        openedAt.current = Date.now();
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -27,10 +45,20 @@ export default function Contact() {
             const res = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, email, message }),
+                body: JSON.stringify({
+                    name,
+                    email,
+                    message,
+                    website,
+                    t: openedAt.current,
+                    turnstileToken: formRef.current
+                        ? new FormData(formRef.current).get("cf-turnstile-response")
+                        : undefined,
+                }),
             });
 
             const data = await res.json();
+            window.turnstile?.reset();
 
             if (!res.ok) {
                 setErrorMsg(data.error || "Error al enviar el mensaje.");
@@ -71,7 +99,21 @@ export default function Contact() {
 
                         {/* Contact Form */}
                         <SlideUp delay={0.3}>
-                            <form onSubmit={handleSubmit} className="space-y-5">
+                            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+                                {/* Campo trampa: invisible para personas; si se llena, es un robot. */}
+                                <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                                    <label htmlFor="website">No llenar este campo</label>
+                                    <input
+                                        id="website"
+                                        name="website"
+                                        type="text"
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                        value={website}
+                                        onChange={(e) => setWebsite(e.target.value)}
+                                    />
+                                </div>
+
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div className="space-y-2">
                                         <label htmlFor="name" className="text-sm font-semibold text-foreground/80">
@@ -119,6 +161,13 @@ export default function Contact() {
                                         className="w-full px-4 py-3 rounded-xl border border-border bg-background/60 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50 transition-all resize-none disabled:opacity-50"
                                     />
                                 </div>
+
+                                {TURNSTILE_SITE_KEY && (
+                                    <>
+                                        <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />
+                                        <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="auto" />
+                                    </>
+                                )}
 
                                 {/* Feedback messages */}
                                 {formState === "success" && (
