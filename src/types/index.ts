@@ -23,6 +23,12 @@ export interface Project {
     privateNote?: string;
 }
 
+export interface ExperienceHighlight {
+    title: string;
+    period?: string;
+    detail: string;
+}
+
 export interface Experience {
     company: string;
     position: string;
@@ -30,7 +36,7 @@ export interface Experience {
     startDate: string;
     endDate: string;
     description: string;
-    highlights?: string[];
+    highlights?: ExperienceHighlight[];
     technologies?: string[];
 }
 

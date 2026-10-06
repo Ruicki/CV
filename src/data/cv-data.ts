@@ -42,21 +42,32 @@ export const socialLinks: SocialLink[] = [
     },
 ];
 
-// Experiencia en desarrollo: timeline principal con detalle.
+// Experiencia en desarrollo: tarjeta principal con detalle.
 export const experience: Experience[] = [
     {
-        company: "Freelancer / Independiente",
+        company: "Independiente",
         position: "Desarrollador Freelance",
         location: "Panamá (Remoto)",
         startDate: "Dic 2025",
         endDate: "Ago 2026",
         description: "Desarrollo de SaaS para clientes (proyectos pagados) y de proyectos propios.",
         highlights: [
-            "Sistema de Control de Acceso (SCA): proyecto freelance pagado (mar.–jun. 2026), desarrollado con React, Node.js, Express, Prisma y PostgreSQL y desplegado con Docker y Docker Compose (multi-stage builds).",
-            "Gestor de Informes Periciales: SaaS MERN, proyecto freelance pagado (dic. 2025 – feb. 2026). Reduce el tiempo de generación de cada informe de 2 horas a 10 minutos (91 % menos), genera el PDF con PDFKit y envía notificaciones automáticas por SMTP (Nodemailer).",
-            "Proyectos propios: Finanzas Maestras, Visualmind y Merkando.",
+            {
+                title: "Gestor de Informes Periciales",
+                period: "Dic 2025 – Feb 2026",
+                detail: "Reduce el tiempo de cada informe de 2 horas a 10 minutos (91 % menos), con generación automática de PDF y notificaciones por correo.",
+            },
+            {
+                title: "Sistema de Control de Acceso (SCA)",
+                period: "Mar – Jun 2026",
+                detail: "Registro de visitantes sin conexión, con panel administrativo y despliegue con Docker y Docker Compose (multi-stage builds).",
+            },
+            {
+                title: "Proyectos propios",
+                detail: "Finanzas Maestras, Visualmind y Merkando.",
+            },
         ],
-        technologies: ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Docker", "Docker Compose", "PDFKit", "Nodemailer"],
+        technologies: ["React", "Node.js", "Express", "MongoDB", "PostgreSQL", "Prisma", "Docker", "Docker Compose", "PDFKit", "Nodemailer"],
     },
 ];
 
