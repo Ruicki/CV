@@ -5,6 +5,8 @@ import path from "node:path";
 import { personalInfo } from "@/data/cv-data";
 
 // Imagen de vista previa al compartir el enlace (WhatsApp, Instagram, LinkedIn...).
+// WhatsApp e Instagram recortan la miniatura a un cuadrado del centro, así que la foto,
+// el nombre y el cargo van centrados dentro de los 630 px centrales.
 export const alt = `${personalInfo.name} - ${personalInfo.title}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -19,11 +21,12 @@ export default async function OGImage() {
         style={{
           width: 1200,
           height: 630,
-          background: "#0a1628",
+          background: "radial-gradient(circle at 50% 40%, #13294a 0%, #0a1628 60%)",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
-          padding: "0 90px",
-          gap: 70,
+          justifyContent: "center",
+          gap: 18,
           fontFamily: "sans-serif",
         }}
       >
@@ -31,33 +34,18 @@ export default async function OGImage() {
         <img
           src={photoSrc}
           alt={personalInfo.name}
-          width={340}
-          height={340}
-          style={{
-            borderRadius: 170,
-            border: "6px solid #c9a84c",
-            objectFit: "cover",
-          }}
+          width={250}
+          height={250}
+          style={{ borderRadius: 125, border: "6px solid #c9a84c", objectFit: "cover" }}
         />
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 30, fontWeight: "bold", color: "#c9a84c", letterSpacing: "2px" }}>
-            RP.
-          </div>
-          <div style={{ fontSize: 72, fontWeight: "bold", color: "#ffffff", letterSpacing: "-1px", lineHeight: 1 }}>
-            {personalInfo.name}
-          </div>
-          <div style={{ fontSize: 34, color: "#c9a84c", letterSpacing: "1px" }}>
-            {personalInfo.title}
-          </div>
-          <div style={{ width: 80, height: 4, background: "#c9a84c", borderRadius: 2 }} />
-          <div style={{ fontSize: 26, color: "#a9b6c4" }}>
-            React · Node.js · TypeScript · Docker
-          </div>
-          <div style={{ fontSize: 24, color: "#7d8b99" }}>
-            Portafolio y proyectos
-          </div>
+        <div style={{ fontSize: 66, fontWeight: "bold", color: "#ffffff", letterSpacing: "-1px", marginTop: 8 }}>
+          {personalInfo.name}
         </div>
+        <div style={{ fontSize: 32, color: "#c9a84c", letterSpacing: "1px" }}>
+          {personalInfo.title}
+        </div>
+        <div style={{ width: 80, height: 4, background: "#c9a84c", borderRadius: 2, marginTop: 4 }} />
+        <div style={{ fontSize: 26, color: "#a9b6c4" }}>React · Node.js · TypeScript · Docker</div>
       </div>
     ),
     { ...size }
